@@ -96,8 +96,51 @@ const Hero = () => {
             {/* Morphing room visualization */}
             <div className="absolute inset-0 rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(33,230,193,0.2)] animate-morph-shape">
               <div className="absolute inset-0 bg-gradient-to-br from-obvian-black/40 to-obvian-black/95 backdrop-blur-sm z-10"></div>
-              {/* Animated SVG inside the bubble */}
-              <Animation2 className="absolute inset-0 w-full h-full" />
+              {/* Animated SVG cityscape inside the bubble */}
+              <svg viewBox="0 0 400 400" className="absolute inset-0 w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g>
+                  {/* Buildings */}
+                  <rect x="40" y="220" width="40" height="120" rx="8" fill="#21E6C1" opacity="0.18">
+                    <animate attributeName="y" values="220;210;220" dur="6s" repeatCount="indefinite" />
+                  </rect>
+                  <rect x="100" y="180" width="60" height="160" rx="12" fill="#21E6C1" opacity="0.22">
+                    <animate attributeName="y" values="180;170;180" dur="7s" repeatCount="indefinite" />
+                  </rect>
+                  <rect x="180" y="250" width="30" height="90" rx="6" fill="#21E6C1" opacity="0.15">
+                    <animate attributeName="y" values="250;240;250" dur="5.5s" repeatCount="indefinite" />
+                  </rect>
+                  <rect x="230" y="200" width="80" height="140" rx="14" fill="#21E6C1" opacity="0.20">
+                    <animate attributeName="y" values="200;190;200" dur="8s" repeatCount="indefinite" />
+                  </rect>
+                  <rect x="330" y="270" width="30" height="70" rx="6" fill="#21E6C1" opacity="0.13">
+                    <animate attributeName="y" values="270;260;270" dur="6.5s" repeatCount="indefinite" />
+                  </rect>
+                  {/* Glowing windows */}
+                  <rect x="50" y="320" width="8" height="16" fill="#fff" opacity="0.7">
+                    <animate attributeName="opacity" values="0.7;0.2;0.7" dur="2s" repeatCount="indefinite" />
+                  </rect>
+                  <rect x="120" y="300" width="10" height="20" fill="#fff" opacity="0.7">
+                    <animate attributeName="opacity" values="0.7;0.1;0.7" dur="2.5s" repeatCount="indefinite" />
+                  </rect>
+                  <rect x="250" y="320" width="12" height="18" fill="#fff" opacity="0.7">
+                    <animate attributeName="opacity" values="0.7;0.3;0.7" dur="2.2s" repeatCount="indefinite" />
+                  </rect>
+                  {/* Moving lights */}
+                  <circle cx="80" cy="370" r="4" fill="#21E6C1">
+                    <animate attributeName="cx" values="80;320;80" dur="7s" repeatCount="indefinite" />
+                  </circle>
+                  <circle cx="320" cy="390" r="3" fill="#fff" opacity="0.6">
+                    <animate attributeName="cx" values="320;80;320" dur="8s" repeatCount="indefinite" />
+                  </circle>
+                  {/* Floating tech elements */}
+                  <rect x="180" y="120" width="18" height="18" rx="4" fill="#21E6C1" opacity="0.12">
+                    <animate attributeName="y" values="120;100;120" dur="5s" repeatCount="indefinite" />
+                  </rect>
+                  <circle cx="300" cy="100" r="10" fill="#21E6C1" opacity="0.10">
+                    <animate attributeName="cy" values="100;80;100" dur="6s" repeatCount="indefinite" />
+                  </circle>
+                </g>
+              </svg>
               <motion.div 
                 className="bg-obvian-black/60 backdrop-blur-md p-4 rounded-xl border border-obvian-cyan/20"
                 animate={{ 
