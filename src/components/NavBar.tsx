@@ -85,15 +85,17 @@ const NavBar = () => {
             variant="outline" 
             className="hidden md:inline-flex border-cyan-400/60 text-obvian-cyan bg-obvian-black/40 backdrop-blur-md hover:bg-obvian-cyan hover:text-obvian-black font-semibold shadow-cyan-glow button-hover animate-fade-in-up"
             style={{animationDelay: '600ms', animationFillMode: 'forwards'}}
+            asChild
           >
-            Book Tour
+            <Link to="/book-tour">Book Tour</Link>
           </Button>
           <Button 
             variant="default" 
             className="bg-gradient-to-r from-obvian-cyan to-cyan-200 text-obvian-black font-bold shadow-cyan-glow hover:scale-105 button-hover animate-fade-in-up"
             style={{animationDelay: '800ms', animationFillMode: 'forwards'}}
+            asChild
           >
-            Join Waitlist
+            <Link to="/join-waitlist">Join Waitlist</Link>
           </Button>
           
           <button className="md:hidden text-white ml-2" onClick={toggleMobileMenu} aria-label="Toggle menu">
@@ -134,8 +136,9 @@ const NavBar = () => {
                 <Button 
                   variant="outline" 
                   className="w-full border-cyan-400/60 text-obvian-cyan bg-obvian-black/40 backdrop-blur-md hover:bg-obvian-cyan hover:text-obvian-black font-semibold shadow-cyan-glow"
+                  asChild
                 >
-                  Book Tour
+                  <Link to="/book-tour">Book Tour</Link>
                 </Button>
               </li>
             </ul>

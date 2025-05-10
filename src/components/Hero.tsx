@@ -96,24 +96,8 @@ const Hero = () => {
             {/* Morphing room visualization */}
             <div className="absolute inset-0 rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(33,230,193,0.2)] animate-morph-shape">
               <div className="absolute inset-0 bg-gradient-to-br from-obvian-black/40 to-obvian-black/95 backdrop-blur-sm z-10"></div>
-              {spaceTypes.map((space, index) => (
-                <motion.div 
-                  key={space.name}
-                  className="absolute inset-0 flex items-center justify-center"
-                  initial={{ opacity: 0 }}
-                  animate={{ 
-                    opacity: index === activeSpace ? 1 : 0,
-                    scale: index === activeSpace ? 1 : 1.1
-                  }}
-                  transition={{ duration: 0.7, ease: "easeInOut" }}
-                >
-                  <img 
-                    src={`https://images.unsplash.com/photo-1${486 + index * 10}312338219-ce68d2c6f44d`} 
-                    alt={`Obvian ${space.name} Space`}
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                </motion.div>
-              ))}
+              {/* Animated SVG inside the bubble */}
+              <Animation2 className="absolute inset-0 w-full h-full" />
               <motion.div 
                 className="bg-obvian-black/60 backdrop-blur-md p-4 rounded-xl border border-obvian-cyan/20"
                 animate={{ 

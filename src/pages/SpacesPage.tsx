@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { ChevronRight, Star } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const spaceTypes = [
   {
@@ -115,8 +116,8 @@ const SpacesPage = () => {
                         ))}
                       </div>
                       <div className="flex flex-col sm:flex-row gap-4">
-                        <Button className="bg-obvian-cyan text-obvian-black hover:bg-obvian-cyan/80 button-hover font-semibold shadow-cyan-glow">
-                          Book a Tour
+                        <Button asChild className="bg-obvian-cyan text-obvian-black hover:bg-obvian-cyan/80 button-hover font-semibold shadow-cyan-glow">
+                          <Link to="/book-tour">Book a Tour</Link>
                         </Button>
                         <Button variant="outline" className="border-obvian-cyan/50 text-obvian-cyan hover:bg-obvian-cyan/10 button-hover font-semibold">
                           Learn More
@@ -134,8 +135,8 @@ const SpacesPage = () => {
             <p className="text-obvian-gray/80 mb-8 max-w-2xl mx-auto">
               Join our waitlist to be among the first to experience the future of flexible urban living.
             </p>
-            <Button className="bg-obvian-cyan text-obvian-black hover:bg-obvian-cyan/80 button-hover px-8 py-6 text-lg">
-              Join Waitlist
+            <Button asChild className="bg-obvian-cyan text-obvian-black hover:bg-obvian-cyan/80 button-hover px-8 py-6 text-lg">
+              <Link to="/join-waitlist">Join Waitlist</Link>
             </Button>
           </div>
         </div>
