@@ -1,11 +1,12 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import Logo from "./Logo";
 
 const NavBar = () => {
+  const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -31,12 +32,21 @@ const NavBar = () => {
     { text: "How It Works", path: "/#how-it-works" },
     { text: "Features", path: "/#features" },
     { text: "Spaces", path: "/spaces" },
+    { text: "Services", path: "/services" },
+    { text: "Projects", path: "/projects" },
     { text: "About", path: "/about" },
     { text: "Contact", path: "/#contact" }
   ];
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
+  };
+  
+  const isActive = (path: string) => {
+    if (path.startsWith('/#')) {
+      return location.pathname === '/' && location.hash === path.substring(1);
+    }
+    return location.pathname === path;
   };
 
   return (
@@ -58,7 +68,11 @@ const NavBar = () => {
               <li key={item.text} className={`opacity-0 animate-fade-in animation-delay-${index * 300}`} style={{animationDelay: `${index * 100}ms`, animationFillMode: 'forwards'}}>
                 <Link 
                   to={item.path}
-                  className="text-white opacity-80 hover:opacity-100 transition-opacity hover-link"
+                  className={`text-white transition-opacity hover-link relative ${
+                    isActive(item.path) 
+                      ? "opacity-100 after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-obvian-cyan" 
+                      : "opacity-80 hover:opacity-100"
+                  }`}
                 >
                   {item.text}
                 </Link>
@@ -106,7 +120,11 @@ const NavBar = () => {
                 >
                   <Link
                     to={item.path}
-                    className="text-white block py-2 px-4 rounded-lg hover:bg-obvian-cyan/10 transition-colors"
+                    className={`text-white block py-2 px-4 rounded-lg transition-colors ${
+                      isActive(item.path)
+                        ? "bg-obvian-cyan/20 border-l-2 border-obvian-cyan pl-3" 
+                        : "hover:bg-obvian-cyan/10"
+                    }`}
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     {item.text}

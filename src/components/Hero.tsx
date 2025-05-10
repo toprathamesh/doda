@@ -1,7 +1,9 @@
 
 import { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowDown, Play } from "lucide-react";
+import { ArrowDown } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const spaceTypes = [
   { name: "Living", description: "Cozy apartment living with smart features" },
@@ -75,33 +77,83 @@ const Hero = () => {
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
         <div ref={particlesRef} className="absolute inset-0"></div>
         
-        <div className="absolute top-20 right-10 w-64 h-64 rounded-full bg-obvian-cyan/10 animate-pulse-soft"></div>
-        <div className="absolute bottom-20 left-10 w-96 h-96 rounded-full bg-obvian-cyan/5 animate-pulse-soft animation-delay-300"></div>
-        <div className="absolute top-1/3 left-1/4 w-40 h-40 rounded-full bg-obvian-gray/5 animate-pulse-soft animation-delay-600"></div>
+        <motion.div 
+          className="absolute top-20 right-10 w-64 h-64 rounded-full bg-obvian-cyan/10"
+          animate={{ scale: [1, 1.1, 1], opacity: [0.1, 0.2, 0.1] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div 
+          className="absolute bottom-20 left-10 w-96 h-96 rounded-full bg-obvian-cyan/5"
+          animate={{ scale: [1, 1.15, 1], opacity: [0.05, 0.1, 0.05] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+        />
+        <motion.div 
+          className="absolute top-1/3 left-1/4 w-40 h-40 rounded-full bg-obvian-gray/5"
+          animate={{ scale: [1, 1.2, 1], opacity: [0.05, 0.15, 0.05] }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        />
         
         {/* Dynamic grid lines */}
         <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
         
         {/* Glowing lines */}
-        <div className="absolute h-px w-full top-1/4 left-0 bg-gradient-to-r from-transparent via-obvian-cyan/20 to-transparent"></div>
-        <div className="absolute h-px w-full top-2/4 left-0 bg-gradient-to-r from-transparent via-obvian-cyan/10 to-transparent"></div>
-        <div className="absolute h-px w-full top-3/4 left-0 bg-gradient-to-r from-transparent via-obvian-cyan/30 to-transparent"></div>
+        <motion.div 
+          className="absolute h-px w-full top-1/4 left-0 bg-gradient-to-r from-transparent via-obvian-cyan/20 to-transparent"
+          animate={{ 
+            opacity: [0.2, 0.5, 0.2],
+            scaleY: [1, 1.5, 1]
+          }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div 
+          className="absolute h-px w-full top-2/4 left-0 bg-gradient-to-r from-transparent via-obvian-cyan/10 to-transparent"
+          animate={{ 
+            opacity: [0.1, 0.3, 0.1],
+            scaleY: [1, 1.5, 1]  
+          }}
+          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        />
+        <motion.div 
+          className="absolute h-px w-full top-3/4 left-0 bg-gradient-to-r from-transparent via-obvian-cyan/30 to-transparent"
+          animate={{ 
+            opacity: [0.3, 0.6, 0.3],
+            scaleY: [1, 1.5, 1]
+          }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+        />
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className={`text-center lg:text-left transition-all duration-1000 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}>
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-white leading-tight">
+          <motion.div 
+            className="text-center lg:text-left"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+          >
+            <motion.h1 
+              className="text-4xl md:text-5xl lg:text-7xl font-bold text-white leading-tight"
+              animate={{ scale: [1, 1.01, 1] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+            >
               Obvian: <span className="animated-gradient-text">The Future of Flexible Urban Living</span>
-            </h1>
+            </motion.h1>
             
-            <p className="mt-6 text-xl md:text-2xl text-obvian-gray/90">
+            <motion.p 
+              className="mt-6 text-xl md:text-2xl text-obvian-gray/90"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+            >
               Spaces that adapt to your life, work, and needs—in an instant.
-            </p>
+            </motion.p>
             
-            <div className="mt-10 flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
+            <motion.div 
+              className="mt-10 flex flex-col sm:flex-row justify-center lg:justify-start gap-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.4 }}
+            >
               <Button 
                 className="bg-obvian-cyan text-obvian-black hover:bg-obvian-cyan/80 px-8 py-6 text-lg button-hover group relative overflow-hidden"
                 onClick={scrollToHowItWorks}
@@ -118,47 +170,80 @@ const Hero = () => {
               <Button 
                 variant="outline" 
                 className="border-obvian-gray text-obvian-gray hover:bg-obvian-gray/10 px-8 py-6 text-lg button-hover relative overflow-hidden group"
+                asChild
               >
-                <span className="relative z-10">Book a Tour</span>
-                <span className="absolute inset-0 bg-gradient-to-r from-obvian-gray/10 via-obvian-gray/5 to-obvian-gray/10 opacity-0 group-hover:opacity-30 transition-opacity duration-500"></span>
+                <Link to="/services">
+                  <span className="relative z-10">Explore Services</span>
+                  <span className="absolute inset-0 bg-gradient-to-r from-obvian-gray/10 via-obvian-gray/5 to-obvian-gray/10 opacity-0 group-hover:opacity-30 transition-opacity duration-500"></span>
+                </Link>
               </Button>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
           
-          <div className={`relative h-[400px] md:h-[500px] transition-all duration-1000 delay-300 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}>
+          <motion.div 
+            className="relative h-[400px] md:h-[500px]"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
+          >
             {/* Morphing room visualization */}
             <div className="absolute inset-0 rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(33,230,193,0.2)] animate-morph-shape">
               <div className="absolute inset-0 bg-gradient-to-br from-obvian-black/40 to-obvian-black/95 backdrop-blur-sm z-10"></div>
               
               {spaceTypes.map((space, index) => (
-                <div 
+                <motion.div 
                   key={space.name}
-                  className={`absolute inset-0 transition-opacity duration-1000 flex items-center justify-center ${
-                    index === activeSpace ? 'opacity-100' : 'opacity-0'
-                  }`}
+                  className="absolute inset-0 flex items-center justify-center"
+                  initial={{ opacity: 0 }}
+                  animate={{ 
+                    opacity: index === activeSpace ? 1 : 0,
+                    scale: index === activeSpace ? 1 : 1.1
+                  }}
+                  transition={{ duration: 0.7, ease: "easeInOut" }}
                 >
                   <img 
                     src={`https://images.unsplash.com/photo-1${486 + index * 10}312338219-ce68d2c6f44d`} 
                     alt={`Obvian ${space.name} Space`}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 scale-105 hover:scale-110"
+                    className="absolute inset-0 w-full h-full object-cover"
                   />
-                </div>
+                </motion.div>
               ))}
               
               <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
-                <div className="bg-obvian-black/60 backdrop-blur-md p-4 rounded-xl border border-obvian-cyan/20">
-                  <h3 className="text-2xl font-bold text-white mb-2 flex items-center">
+                <motion.div 
+                  className="bg-obvian-black/60 backdrop-blur-md p-4 rounded-xl border border-obvian-cyan/20"
+                  animate={{ 
+                    y: [0, -5, 0],
+                    boxShadow: [
+                      "0 0 20px rgba(33,230,193,0.1)", 
+                      "0 0 25px rgba(33,230,193,0.2)", 
+                      "0 0 20px rgba(33,230,193,0.1)"
+                    ]
+                  }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <motion.h3 
+                    className="text-2xl font-bold text-white mb-2 flex items-center"
+                    key={spaceTypes[activeSpace].name}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
                     <span className="flex h-3 w-3 mr-2">
                       <span className="animate-ping absolute h-3 w-3 rounded-full bg-obvian-cyan opacity-75"></span>
                       <span className="relative rounded-full h-3 w-3 bg-obvian-cyan"></span>
                     </span>
                     {spaceTypes[activeSpace].name} Space
-                  </h3>
-                  <p className="text-obvian-gray">
+                  </motion.h3>
+                  <motion.p 
+                    className="text-obvian-gray"
+                    key={`desc-${spaceTypes[activeSpace].name}`}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.3, delay: 0.1 }}
+                  >
                     {spaceTypes[activeSpace].description}
-                  </p>
+                  </motion.p>
                   
                   <div className="mt-4 flex justify-center gap-2">
                     {spaceTypes.map((space, index) => (
@@ -172,21 +257,17 @@ const Hero = () => {
                       />
                     ))}
                   </div>
-                </div>
-              </div>
-              
-              {/* Play button overlay */}
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20">
-                <button className="w-16 h-16 bg-obvian-cyan/20 backdrop-blur-md rounded-full flex items-center justify-center hover:bg-obvian-cyan/30 transition-all hover:scale-110 group relative">
-                  <div className="absolute inset-0 rounded-full bg-obvian-cyan/30 animate-ping opacity-75"></div>
-                  <Play className="w-6 h-6 text-obvian-cyan group-hover:text-white transition-colors" />
-                </button>
+                </motion.div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
         
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <motion.div 
+          className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        >
           <button 
             onClick={scrollToHowItWorks}
             aria-label="Scroll down"
@@ -194,7 +275,7 @@ const Hero = () => {
           >
             <ArrowDown className="w-8 h-8" />
           </button>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
