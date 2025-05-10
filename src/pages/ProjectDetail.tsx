@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -7,6 +6,22 @@ import { ChevronLeft, MapPin, Calendar, Users, ArrowRight } from "lucide-react";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import { useToast } from "@/components/ui/use-toast";
+
+// Add this type above the projects array:
+type Project = {
+  id: string;
+  title: string;
+  location: string;
+  date: string;
+  description: string;
+  longDescription: string;
+  gallery: string[];
+  stats: { label: string; value: string }[];
+  features: string[];
+  testimonials: { text: string; author: string; role: string }[];
+  tags: string[];
+  image?: string;
+};
 
 // This would usually come from an API, but for now we'll define it here
 const projects = [
@@ -137,7 +152,7 @@ const ProjectDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { toast } = useToast();
-  const [project, setProject] = useState<any | null>(null);
+  const [project, setProject] = useState<Project | null>(null);
   const [loading, setLoading] = useState(true);
   const [activeImage, setActiveImage] = useState(0);
   
@@ -300,7 +315,7 @@ const ProjectDetail = () => {
                 <>
                   <h3 className="text-xl font-bold mt-8 mb-6 text-white">Testimonials</h3>
                   <div className="space-y-6">
-                    {project.testimonials.map((testimonial: any, index: number) => (
+                    {project.testimonials.map((testimonial, index) => (
                       <div key={index} className="bg-obvian-black/60 border border-obvian-cyan/20 p-6 rounded-xl">
                         <p className="text-obvian-gray/90 italic mb-4">"{testimonial.text}"</p>
                         <div>
@@ -319,7 +334,7 @@ const ProjectDetail = () => {
                 <h3 className="text-xl font-bold mb-4 text-white">Project Details</h3>
                 
                 <div className="space-y-4 mb-6">
-                  {project.stats.map((stat: any) => (
+                  {project.stats.map((stat) => (
                     <div key={stat.label} className="flex justify-between">
                       <span className="text-obvian-gray/70">{stat.label}</span>
                       <span className="text-white font-medium">{stat.value}</span>
