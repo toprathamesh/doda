@@ -88,11 +88,16 @@ const SpacesPage = () => {
                     style={{ animationDelay: `${100 + idx * 100}ms`, animationFillMode: 'forwards' }}
                   >
                     <div className="relative h-64 w-full">
-                      <img
-                        src={space.image}
-                        alt={space.name}
-                        className="w-full h-full object-cover"
-                        loading="lazy"
+                      <video
+                        src="https://static.vecteezy.com/system/resources/previews/033/658/784/mp4/modern-office-building-with-silhouettes-of-businessmen-walking-on-sidewalk-video.mp4"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        preload="auto"
+                        className="w-full h-full object-cover opacity-60 blur-sm scale-105 absolute inset-0"
+                        style={{ zIndex: 0 }}
+                        aria-hidden="true"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-obvian-black/70 to-transparent"></div>
                     </div>

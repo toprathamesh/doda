@@ -206,10 +206,16 @@ const ProjectDetail = () => {
       <section className="pt-32 pb-12 relative overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-obvian-black/70 z-10"></div>
-          <img 
-            src={project.gallery[0]} 
-            alt={project.title}
-            className="w-full h-full object-cover"
+          <video
+            src="https://static.vecteezy.com/system/resources/previews/033/658/784/mp4/modern-office-building-with-silhouettes-of-businessmen-walking-on-sidewalk-video.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            className="w-full h-full object-cover opacity-60 blur-sm scale-105 absolute inset-0"
+            style={{ zIndex: 0 }}
+            aria-hidden="true"
           />
         </div>
         
@@ -252,34 +258,18 @@ const ProjectDetail = () => {
         <div className="container mx-auto px-4">
           <div className="mb-8">
             <div className="relative h-80 md:h-[500px] rounded-xl overflow-hidden">
-              <motion.img 
-                key={`main-${activeImage}`}
-                src={project.gallery[activeImage]} 
-                alt={`${project.title} - Image ${activeImage + 1}`}
-                className="w-full h-full object-cover"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5 }}
+              <video
+                src="https://static.vecteezy.com/system/resources/previews/033/658/784/mp4/modern-office-building-with-silhouettes-of-businessmen-walking-on-sidewalk-video.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="auto"
+                className="w-full h-full object-cover opacity-60 blur-sm scale-105 absolute inset-0"
+                style={{ zIndex: 0 }}
+                aria-hidden="true"
               />
             </div>
-          </div>
-          
-          <div className="grid grid-cols-4 gap-3">
-            {project.gallery.map((image: string, index: number) => (
-              <button
-                key={`thumb-${index}`}
-                className={`rounded-md overflow-hidden border-2 transition-all ${
-                  index === activeImage ? 'border-obvian-cyan scale-105 shadow-[0_0_20px_rgba(33,230,193,0.5)]' : 'border-transparent opacity-70 hover:opacity-100'
-                }`}
-                onClick={() => setActiveImage(index)}
-              >
-                <img 
-                  src={image} 
-                  alt={`${project.title} - Thumbnail ${index + 1}`}
-                  className="w-full h-24 object-cover"
-                />
-              </button>
-            ))}
           </div>
         </div>
       </section>

@@ -3,6 +3,9 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowDown } from "lucide-react";
 import { Link } from "react-router-dom";
+import Animation1 from "./ui/BuildingAnimation1";
+import Animation2 from "./ui/BuildingAnimation2";
+import Animation3 from "./ui/BuildingAnimation3";
 
 const spaceTypes = [
   { name: "Living", description: "Cozy apartment living with smart features" },
@@ -29,43 +32,8 @@ const Hero = () => {
     <section 
       className="pt-32 pb-20 min-h-screen flex flex-col justify-center relative bg-obvian-black overflow-hidden"
     >
-      {/* Animated isometric grid background */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <svg width="100%" height="100%" viewBox="0 0 1440 800" fill="none" className="absolute inset-0 w-full h-full" style={{minHeight: 600}}>
-          <g stroke="#21E6C1" strokeWidth="0.5" opacity="0.08">
-            {/* Vertical lines */}
-            {[...Array(30)].map((_, i) => (
-              <line key={i} x1={i*48} y1="0" x2={i*48} y2="800" />
-            ))}
-            {/* Diagonal lines */}
-            {[...Array(30)].map((_, i) => (
-              <line key={i+100} x1={i*48-400} y1="0" x2={i*48+400} y2="800" />
-            ))}
-          </g>
-        </svg>
-        {/* Floating window shapes */}
-        <motion.rect 
-          className="absolute"
-          x={200} y={120} width={120} height={60} rx={10}
-          fill="#21E6C1" opacity={0.08}
-          animate={{ y: [120, 100, 120] }}
-          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.rect 
-          className="absolute"
-          x={900} y={300} width={180} height={80} rx={16}
-          fill="#FFD700" opacity={0.06}
-          animate={{ y: [300, 320, 300] }}
-          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.rect 
-          className="absolute"
-          x={600} y={500} width={100} height={40} rx={8}
-          fill="#21E6C1" opacity={0.07}
-          animate={{ y: [500, 520, 500] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        />
-      </div>
+      {/* Animated SVG building background */}
+      <Animation1 className="absolute inset-0 z-0 pointer-events-none" />
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div

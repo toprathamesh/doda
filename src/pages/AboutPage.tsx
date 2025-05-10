@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import Logo from "@/components/Logo";
+import BuildingAnimation3 from "@/components/ui/BuildingAnimation3";
 
 const AboutPage = () => {
   const [mounted, setMounted] = useState(false);
@@ -71,6 +72,7 @@ const AboutPage = () => {
       
       {/* Hero section */}
       <section className="pt-32 pb-20 relative bg-obvian-black overflow-hidden">
+        <BuildingAnimation3 className="absolute inset-0 w-full h-full z-0" />
         <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
         <div className="absolute top-20 right-10 w-64 h-64 rounded-full bg-obvian-cyan/10 animate-pulse-soft"></div>
         <div className="absolute bottom-20 left-10 w-96 h-96 rounded-full bg-obvian-cyan/5 animate-pulse-soft animation-delay-300"></div>
@@ -105,11 +107,16 @@ const AboutPage = () => {
             </div>
             <div className="relative h-[400px] rounded-xl overflow-hidden neon-glow animate-fade-in-up delay-200">
               <div className="absolute inset-0 bg-gradient-to-br from-obvian-black/40 to-obvian-black/95 backdrop-blur-sm z-10"></div>
-              <img 
-                src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d" 
-                alt="Obvian Mission: Adaptive Living" 
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 scale-105 hover:scale-110" 
-                loading="lazy"
+              <video
+                src="https://static.vecteezy.com/system/resources/previews/033/658/784/mp4/modern-office-building-with-silhouettes-of-businessmen-walking-on-sidewalk-video.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="auto"
+                className="absolute inset-0 w-full h-full object-cover opacity-60 blur-sm scale-105"
+                style={{ zIndex: 0 }}
+                aria-hidden="true"
               />
               <div className="absolute inset-0 flex items-center justify-center z-20">
                 <div className="glass-card border border-cyan-400/10 p-8 max-w-md text-center">

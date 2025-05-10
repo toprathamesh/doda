@@ -1,10 +1,10 @@
-
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import BuildingAnimation2 from "@/components/ui/BuildingAnimation2";
 
 const services = [
   {
@@ -77,6 +77,7 @@ const ServicesPage = () => {
       
       {/* Hero section */}
       <section className="pt-32 pb-16 relative overflow-hidden">
+        <BuildingAnimation2 className="absolute inset-0 w-full h-full z-0" />
         <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
         <div className="absolute top-20 right-10 w-64 h-64 rounded-full bg-obvian-cyan/10 animate-pulse-soft"></div>
         <div className="absolute bottom-20 left-10 w-96 h-96 rounded-full bg-obvian-cyan/5 animate-pulse-soft animation-delay-300"></div>

@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import NavBar from "@/components/NavBar";
@@ -6,6 +5,7 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { ChevronRight, MapPin, Calendar, Users } from "lucide-react";
 import { Link } from "react-router-dom";
+import BuildingAnimation2 from "@/components/ui/BuildingAnimation2";
 
 const projects = [
   {
@@ -136,17 +136,9 @@ const ProjectsPage = () => {
       
       {/* Hero section */}
       <section className="pt-32 pb-20 relative overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
-          <div className="parallax-bg absolute top-0 left-0 w-full h-full opacity-40" data-speed="0.3">
-            <img 
-              src="https://images.unsplash.com/photo-1487958449943-2429e8be8625" 
-              alt="Projects background" 
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="absolute inset-0 bg-gradient-to-b from-obvian-black via-obvian-black/90 to-obvian-black"></div>
-        </div>
+        <BuildingAnimation2 className="absolute inset-0 w-full h-full z-0" />
+        <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-obvian-black via-obvian-black/90 to-obvian-black"></div>
         
         <div className="container mx-auto px-4 relative z-10">
           <motion.div 

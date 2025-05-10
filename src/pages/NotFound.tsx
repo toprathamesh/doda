@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Home, AlertTriangle } from "lucide-react";
 import { motion } from "framer-motion";
 import Logo from "@/components/Logo";
+import BuildingAnimation3 from "@/components/ui/BuildingAnimation3";
 
 const NotFound = () => {
   const location = useLocation();
@@ -58,8 +59,8 @@ const NotFound = () => {
       animate="visible"
       variants={containerVariants}
     >
-      {/* Animated background elements */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-10 z-0"></div>
+      {/* Animated SVG building background */}
+      <BuildingAnimation3 className="absolute inset-0 w-full h-full z-0" />
       {/* Building accent */}
       <svg className="absolute -top-10 right-10 w-40 h-40 opacity-10 z-0 animate-float" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="12" y="20" width="40" height="36" rx="4" fill="#21E6C1" stroke="#1A2238" strokeWidth="3"/>

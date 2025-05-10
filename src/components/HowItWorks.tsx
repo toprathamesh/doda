@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
+import BuildingAnimation2 from "./ui/BuildingAnimation2";
 
 const spaceTransformations = [
   {
@@ -156,15 +157,8 @@ const HowItWorks = () => {
                   animate={{ opacity: 0.9 }}
                   transition={{ duration: 0.5 }}
                 />
-                <motion.img
-                  src={`https://images.unsplash.com/photo-1550${1000 + activeTab * 1000}-80022131f5a1`}
-                  alt={spaceTransformations[activeTab].title}
-                  className="w-full h-full object-cover mix-blend-overlay"
-                  initial={{ scale: 1.2, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.7 }}
-                  loading="lazy"
-                />
+                {/* Animated SVG building background */}
+                <BuildingAnimation2 className="absolute inset-0 w-full h-full" />
                 <div className="absolute top-4 left-4">
                   <div className="bg-obvian-black/30 backdrop-blur-sm px-3 py-1 rounded-full">
                     <div className="flex items-center space-x-2">
