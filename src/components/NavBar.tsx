@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "react-router-dom";
@@ -53,7 +52,7 @@ const NavBar = () => {
     <header 
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
         scrolled 
-          ? "py-2 bg-obvian-black/95 backdrop-blur-md shadow-[0_0_30px_-10px_rgba(33,230,193,0.3)]" 
+          ? "py-2 bg-obvian-black/80 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(33,230,193,0.10)] border-b border-cyan-400/10" 
           : "py-4 bg-transparent"
       } ${mounted ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0'}`}
     >
@@ -62,16 +61,16 @@ const NavBar = () => {
           <Logo size={scrolled ? "small" : "medium"} />
         </Link>
         
-        <nav className={`hidden md:block ${mobileMenuOpen ? 'flex' : ''}`}>
+        <nav className={`hidden md:block`}>
           <ul className="flex items-center gap-8">
             {navItems.map((item, index) => (
-              <li key={item.text} className={`opacity-0 animate-fade-in animation-delay-${index * 300}`} style={{animationDelay: `${index * 100}ms`, animationFillMode: 'forwards'}}>
+              <li key={item.text} className={`opacity-0 animate-fade-in-up`} style={{animationDelay: `${index * 80}ms`, animationFillMode: 'forwards'}}>
                 <Link 
                   to={item.path}
-                  className={`text-white transition-opacity hover-link relative ${
+                  className={`text-white transition-all relative px-1 py-0.5 font-medium ${
                     isActive(item.path) 
-                      ? "opacity-100 after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-obvian-cyan" 
-                      : "opacity-80 hover:opacity-100"
+                      ? "after:absolute after:left-0 after:-bottom-1 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-obvian-cyan after:to-white after:rounded-full after:transition-all after:duration-300"
+                      : "opacity-80 hover:opacity-100 after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-0.5 after:bg-obvian-cyan after:rounded-full after:transition-all after:duration-300 hover:after:w-full"
                   }`}
                 >
                   {item.text}
@@ -84,24 +83,24 @@ const NavBar = () => {
         <div className="flex items-center gap-3">
           <Button 
             variant="outline" 
-            className="hidden md:inline-flex border-obvian-cyan text-obvian-cyan hover:bg-obvian-cyan hover:text-obvian-black button-hover opacity-0 animate-fade-in animation-delay-900"
+            className="hidden md:inline-flex border-cyan-400/60 text-obvian-cyan bg-obvian-black/40 backdrop-blur-md hover:bg-obvian-cyan hover:text-obvian-black font-semibold shadow-cyan-glow button-hover animate-fade-in-up"
             style={{animationDelay: '600ms', animationFillMode: 'forwards'}}
           >
             Book Tour
           </Button>
           <Button 
             variant="default" 
-            className="bg-obvian-cyan text-obvian-black hover:bg-obvian-cyan/80 button-hover opacity-0 animate-fade-in animation-delay-900"
+            className="bg-gradient-to-r from-obvian-cyan to-cyan-200 text-obvian-black font-bold shadow-cyan-glow hover:scale-105 button-hover animate-fade-in-up"
             style={{animationDelay: '800ms', animationFillMode: 'forwards'}}
           >
             Join Waitlist
           </Button>
           
-          <button className="md:hidden text-white" onClick={toggleMobileMenu}>
+          <button className="md:hidden text-white ml-2" onClick={toggleMobileMenu} aria-label="Toggle menu">
             {mobileMenuOpen ? (
-              <X className="w-6 h-6" />
+              <X className="w-7 h-7" />
             ) : (
-              <Menu className="w-6 h-6" />
+              <Menu className="w-7 h-7" />
             )}
           </button>
         </div>
@@ -109,18 +108,18 @@ const NavBar = () => {
 
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-obvian-black/95 backdrop-blur-lg border-t border-obvian-cyan/20 shadow-lg animate-fade-in">
+        <div className="md:hidden absolute top-full left-0 w-full bg-obvian-black/90 backdrop-blur-2xl border-t border-cyan-400/10 shadow-2xl animate-fade-in-up">
           <nav className="container px-4 py-6">
             <ul className="space-y-4">
               {navItems.map((item, index) => (
                 <li 
                   key={item.text}
-                  className="opacity-0 animate-fade-in"
-                  style={{animationDelay: `${index * 100}ms`, animationFillMode: 'forwards'}}
+                  className="opacity-0 animate-fade-in-up"
+                  style={{animationDelay: `${index * 80}ms`, animationFillMode: 'forwards'}}
                 >
                   <Link
                     to={item.path}
-                    className={`text-white block py-2 px-4 rounded-lg transition-colors ${
+                    className={`text-white block py-2 px-4 rounded-lg font-medium transition-colors ${
                       isActive(item.path)
                         ? "bg-obvian-cyan/20 border-l-2 border-obvian-cyan pl-3" 
                         : "hover:bg-obvian-cyan/10"
@@ -131,10 +130,10 @@ const NavBar = () => {
                   </Link>
                 </li>
               ))}
-              <li className="pt-2 border-t border-white/10 opacity-0 animate-fade-in" style={{animationDelay: '400ms', animationFillMode: 'forwards'}}>
+              <li className="pt-2 border-t border-white/10 opacity-0 animate-fade-in-up" style={{animationDelay: '400ms', animationFillMode: 'forwards'}}>
                 <Button 
                   variant="outline" 
-                  className="w-full border-obvian-cyan text-obvian-cyan hover:bg-obvian-cyan hover:text-obvian-black"
+                  className="w-full border-cyan-400/60 text-obvian-cyan bg-obvian-black/40 backdrop-blur-md hover:bg-obvian-cyan hover:text-obvian-black font-semibold shadow-cyan-glow"
                 >
                   Book Tour
                 </Button>
