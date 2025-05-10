@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -66,9 +65,10 @@ export default {
 				// Obvian brand colors
 				obvian: {
 					blue: '#1A2238',
+					black: '#121212',
 					gray: '#E6E8EB',
 					cyan: '#21E6C1',
-					black: '#232323',
+					darkblack: '#0A0A0A',
 					gold: '#FFD700',
 				}
 			},
@@ -130,6 +130,35 @@ export default {
 					'100%': {
 						borderRadius: '60% 40% 30% 70%/60% 30% 70% 40%'
 					}
+				},
+				'float': {
+					'0%, 100%': {
+						transform: 'translateY(0)'
+					},
+					'50%': {
+						transform: 'translateY(-10px)'
+					}
+				},
+				'pulse-glow': {
+					'0%, 100%': {
+						opacity: '1',
+						boxShadow: '0 0 20px 5px rgba(33, 230, 193, 0.3)'
+					},
+					'50%': {
+						opacity: '0.7',
+						boxShadow: '0 0 30px 8px rgba(33, 230, 193, 0.5)'
+					}
+				},
+				'scale-rotate': {
+					'0%': {
+						transform: 'scale(1) rotate(0deg)'
+					},
+					'50%': {
+						transform: 'scale(1.05) rotate(2deg)'
+					},
+					'100%': {
+						transform: 'scale(1) rotate(0deg)'
+					}
 				}
 			},
 			animation: {
@@ -138,7 +167,10 @@ export default {
 				'fade-in-up': 'fade-in-up 0.7s ease-out forwards',
 				'fade-in': 'fade-in 0.5s ease-out forwards',
 				'pulse-soft': 'pulse-soft 3s infinite ease-in-out',
-				'morph-shape': 'morph-shape 8s ease-in-out infinite'
+				'morph-shape': 'morph-shape 8s ease-in-out infinite',
+				'float': 'float 6s ease-in-out infinite',
+				'pulse-glow': 'pulse-glow 3s infinite ease-in-out',
+				'scale-rotate': 'scale-rotate 8s infinite ease-in-out'
 			},
 			fontFamily: {
 				poppins: ['Poppins', 'sans-serif'],
