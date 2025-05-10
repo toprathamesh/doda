@@ -1,42 +1,141 @@
 
 import { useLocation, Link } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Home, AlertTriangle } from "lucide-react";
+import { motion } from "framer-motion";
+import Logo from "@/components/Logo";
 
 const NotFound = () => {
   const location = useLocation();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+    
     console.error(
       "404 Error: User attempted to access non-existent route:",
       location.pathname
     );
+    
+    // Create glitch effect
+    const interval = setInterval(() => {
+      const glitchElement = document.querySelector('.glitch-effect');
+      if (glitchElement) {
+        glitchElement.classList.add('active');
+        setTimeout(() => {
+          glitchElement?.classList.remove('active');
+        }, 200);
+      }
+    }, 3000);
+    
+    return () => clearInterval(interval);
   }, [location.pathname]);
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.5, ease: "easeOut" }
+    }
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-obvian-black text-white p-4">
-      <div className="glass-card p-10 max-w-md w-full text-center animate-fade-in">
-        <div className="mb-6 flex justify-center">
+    <motion.div 
+      className={`min-h-screen flex items-center justify-center bg-obvian-black text-white p-4 relative overflow-hidden ${mounted ? '' : 'opacity-0'}`}
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+    >
+      {/* Animated background elements */}
+      <div className="absolute inset-0 bg-grid-pattern opacity-10 z-0"></div>
+      
+      {/* Glowing elements */}
+      <div className="absolute top-20 left-20 w-72 h-72 rounded-full bg-obvian-cyan/5 filter blur-3xl animate-pulse-soft"></div>
+      <div className="absolute bottom-20 right-20 w-96 h-96 rounded-full bg-obvian-cyan/3 filter blur-3xl animate-pulse-soft animation-delay-300"></div>
+      
+      {/* Glitching lines */}
+      <div className="glitch-effect absolute inset-0 overflow-hidden z-0 pointer-events-none">
+        <div className="absolute h-[1px] w-full top-1/4 left-0 bg-gradient-to-r from-transparent via-obvian-cyan/30 to-transparent"></div>
+        <div className="absolute h-[1px] w-full top-2/4 left-0 bg-gradient-to-r from-transparent via-obvian-cyan/20 to-transparent"></div>
+        <div className="absolute h-[1px] w-full top-3/4 left-0 bg-gradient-to-r from-transparent via-obvian-cyan/40 to-transparent"></div>
+        <div className="absolute w-[1px] h-full left-1/4 top-0 bg-gradient-to-b from-transparent via-obvian-cyan/20 to-transparent"></div>
+        <div className="absolute w-[1px] h-full left-2/4 top-0 bg-gradient-to-b from-transparent via-obvian-cyan/30 to-transparent"></div>
+        <div className="absolute w-[1px] h-full left-3/4 top-0 bg-gradient-to-b from-transparent via-obvian-cyan/10 to-transparent"></div>
+      </div>
+      
+      <motion.div 
+        className="glass-card p-10 max-w-md w-full text-center border-glow z-10"
+        variants={itemVariants}
+      >
+        <motion.div variants={itemVariants} className="mb-8 flex flex-col items-center">
+          <Logo size="medium" />
+        </motion.div>
+      
+        <motion.div variants={itemVariants} className="mb-6 flex justify-center">
           <div className="w-24 h-24 rounded-full bg-obvian-cyan/20 flex items-center justify-center">
             <AlertTriangle className="h-12 w-12 text-obvian-cyan animate-pulse" />
           </div>
-        </div>
+        </motion.div>
         
-        <h1 className="text-5xl font-bold mb-2 bg-gradient-to-r from-obvian-cyan to-white bg-clip-text text-transparent">404</h1>
-        <p className="text-xl text-obvian-gray mb-8">This space doesn't exist yet</p>
+        <motion.h1 
+          variants={itemVariants}
+          className="text-6xl font-bold mb-2 animated-gradient-text"
+        >
+          404
+        </motion.h1>
         
-        <p className="text-obvian-gray/80 mb-8">
+        <motion.p 
+          variants={itemVariants}
+          className="text-xl text-obvian-gray mb-8"
+        >
+          This space doesn't exist yet
+        </motion.p>
+        
+        <motion.p 
+          variants={itemVariants}
+          className="text-obvian-gray/80 mb-8"
+        >
           The page you're looking for hasn't been built or converted yet. Let's take you back to our existing spaces.
-        </p>
+        </motion.p>
         
-        <Link to="/">
-          <Button className="bg-obvian-cyan text-obvian-black hover:bg-obvian-cyan/80 w-full button-hover">
-            <Home className="mr-2 h-5 w-5" /> Return Home
-          </Button>
-        </Link>
-      </div>
-    </div>
+        <motion.div variants={itemVariants}>
+          <Link to="/">
+            <Button className="bg-obvian-cyan text-obvian-black hover:bg-obvian-cyan/80 w-full button-hover">
+              <Home className="mr-2 h-5 w-5" /> Return Home
+            </Button>
+          </Link>
+        </motion.div>
+      </motion.div>
+      
+      {/* Random floating particles */}
+      {Array.from({ length: 20 }).map((_, i) => (
+        <div
+          key={i}
+          className="absolute rounded-full bg-obvian-cyan/10 pointer-events-none"
+          style={{
+            width: `${Math.random() * 6 + 2}px`,
+            height: `${Math.random() * 6 + 2}px`,
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            animation: `float ${Math.random() * 10 + 5}s infinite ease-in-out`,
+            animationDelay: `${Math.random() * 5}s`
+          }}
+        ></div>
+      ))}
+    </motion.div>
   );
 };
 

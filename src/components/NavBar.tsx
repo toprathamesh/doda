@@ -3,12 +3,16 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
+import Logo from "./Logo";
 
 const NavBar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   
   useEffect(() => {
+    setMounted(true);
+    
     const handleScroll = () => {
       if (window.scrollY > 50) {
         setScrolled(true);
@@ -27,6 +31,7 @@ const NavBar = () => {
     { text: "How It Works", path: "/#how-it-works" },
     { text: "Features", path: "/#features" },
     { text: "Spaces", path: "/spaces" },
+    { text: "About", path: "/about" },
     { text: "Contact", path: "/#contact" }
   ];
 
@@ -36,27 +41,24 @@ const NavBar = () => {
 
   return (
     <header 
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
         scrolled 
-          ? "py-3 bg-obvian-black/90 backdrop-blur-md shadow-[0_5px_25px_-10px_rgba(33,230,193,0.2)]" 
-          : "py-5 bg-transparent"
-      }`}
+          ? "py-2 bg-obvian-black/95 backdrop-blur-md shadow-[0_0_30px_-10px_rgba(33,230,193,0.3)]" 
+          : "py-4 bg-transparent"
+      } ${mounted ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0'}`}
     >
       <div className="container px-4 mx-auto flex justify-between items-center">
-        <Link to="/" className="flex items-center group">
-          <div className="h-10 w-10 bg-obvian-cyan rounded-full animate-morph-shape mr-2 group-hover:animate-pulse-glow transition-all"></div>
-          <span className="text-2xl font-bold bg-gradient-to-r from-white to-obvian-cyan bg-clip-text text-transparent group-hover:from-obvian-cyan group-hover:to-white transition-all duration-500">
-            Obvian
-          </span>
+        <Link to="/" className="flex items-center group transition-all duration-300 hover:scale-105">
+          <Logo size={scrolled ? "small" : "medium"} />
         </Link>
         
         <nav className={`hidden md:block ${mobileMenuOpen ? 'flex' : ''}`}>
           <ul className="flex items-center gap-8">
-            {navItems.map((item) => (
-              <li key={item.text}>
+            {navItems.map((item, index) => (
+              <li key={item.text} className={`opacity-0 animate-fade-in animation-delay-${index * 300}`} style={{animationDelay: `${index * 100}ms`, animationFillMode: 'forwards'}}>
                 <Link 
                   to={item.path}
-                  className="text-white opacity-80 hover:opacity-100 transition-opacity relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 hover:after:w-full after:bg-obvian-cyan after:transition-all"
+                  className="text-white opacity-80 hover:opacity-100 transition-opacity hover-link"
                 >
                   {item.text}
                 </Link>
@@ -68,13 +70,15 @@ const NavBar = () => {
         <div className="flex items-center gap-3">
           <Button 
             variant="outline" 
-            className="hidden md:inline-block border-obvian-cyan text-obvian-cyan hover:bg-obvian-cyan hover:text-obvian-black button-hover"
+            className="hidden md:inline-flex border-obvian-cyan text-obvian-cyan hover:bg-obvian-cyan hover:text-obvian-black button-hover opacity-0 animate-fade-in animation-delay-900"
+            style={{animationDelay: '600ms', animationFillMode: 'forwards'}}
           >
             Book Tour
           </Button>
           <Button 
             variant="default" 
-            className="bg-obvian-cyan text-obvian-black hover:bg-obvian-cyan/80 button-hover"
+            className="bg-obvian-cyan text-obvian-black hover:bg-obvian-cyan/80 button-hover opacity-0 animate-fade-in animation-delay-900"
+            style={{animationDelay: '800ms', animationFillMode: 'forwards'}}
           >
             Join Waitlist
           </Button>
@@ -94,8 +98,12 @@ const NavBar = () => {
         <div className="md:hidden absolute top-full left-0 w-full bg-obvian-black/95 backdrop-blur-lg border-t border-obvian-cyan/20 shadow-lg animate-fade-in">
           <nav className="container px-4 py-6">
             <ul className="space-y-4">
-              {navItems.map((item) => (
-                <li key={item.text}>
+              {navItems.map((item, index) => (
+                <li 
+                  key={item.text}
+                  className="opacity-0 animate-fade-in"
+                  style={{animationDelay: `${index * 100}ms`, animationFillMode: 'forwards'}}
+                >
                   <Link
                     to={item.path}
                     className="text-white block py-2 px-4 rounded-lg hover:bg-obvian-cyan/10 transition-colors"
@@ -105,7 +113,7 @@ const NavBar = () => {
                   </Link>
                 </li>
               ))}
-              <li className="pt-2 border-t border-white/10">
+              <li className="pt-2 border-t border-white/10 opacity-0 animate-fade-in" style={{animationDelay: '400ms', animationFillMode: 'forwards'}}>
                 <Button 
                   variant="outline" 
                   className="w-full border-obvian-cyan text-obvian-cyan hover:bg-obvian-cyan hover:text-obvian-black"
