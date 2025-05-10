@@ -289,18 +289,16 @@ const ProjectDetail = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8">
             <div className="md:col-span-2">
-              <h2 className="text-2xl font-bold mb-6 text-white">About this Project</h2>
-              
+              <h2 className="text-2xl font-bold mb-6 text-white animate-fade-in-up delay-100">About this Project</h2>
               {project.longDescription.split('\n\n').map((paragraph: string, index: number) => (
-                <p key={index} className="text-obvian-gray/90 mb-4">
+                <p key={index} className="text-obvian-gray/90 mb-4 animate-fade-in-up" style={{animationDelay: `${100 + index * 60}ms`, animationFillMode: 'forwards'}}>
                   {paragraph}
                 </p>
               ))}
-              
-              <h3 className="text-xl font-bold mt-8 mb-4 text-white">Key Features</h3>
+              <h3 className="text-xl font-bold mt-8 mb-4 text-white animate-fade-in-up delay-200">Key Features</h3>
               <ul className="space-y-3">
                 {project.features?.map((feature: string, index: number) => (
-                  <li key={index} className="flex items-start">
+                  <li key={index} className="flex items-start animate-fade-in-up" style={{animationDelay: `${200 + index * 60}ms`, animationFillMode: 'forwards'}}>
                     <div className="bg-obvian-cyan/20 p-1 rounded-full mt-1">
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" className="w-4 h-4 text-obvian-cyan">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
@@ -310,47 +308,18 @@ const ProjectDetail = () => {
                   </li>
                 ))}
               </ul>
-              
-              {project.testimonials && project.testimonials.length > 0 && (
-                <>
-                  <h3 className="text-xl font-bold mt-8 mb-6 text-white">Testimonials</h3>
-                  <div className="space-y-6">
-                    {project.testimonials.map((testimonial, index) => (
-                      <div key={index} className="bg-obvian-black/60 border border-obvian-cyan/20 p-6 rounded-xl">
-                        <p className="text-obvian-gray/90 italic mb-4">"{testimonial.text}"</p>
-                        <div>
-                          <div className="font-bold text-white">{testimonial.author}</div>
-                          <div className="text-obvian-cyan text-sm">{testimonial.role}</div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </>
-              )}
             </div>
-            
-            <div>
-              <div className="bg-obvian-black/60 border border-obvian-cyan/20 p-6 rounded-xl sticky top-24">
-                <h3 className="text-xl font-bold mb-4 text-white">Project Details</h3>
-                
-                <div className="space-y-4 mb-6">
-                  {project.stats.map((stat) => (
-                    <div key={stat.label} className="flex justify-between">
-                      <span className="text-obvian-gray/70">{stat.label}</span>
-                      <span className="text-white font-medium">{stat.value}</span>
-                    </div>
-                  ))}
-                </div>
-                
-                <div className="space-y-4">
-                  <Button className="w-full bg-obvian-cyan text-obvian-black hover:bg-obvian-cyan/80">
-                    Schedule a Tour
-                  </Button>
-                  <Button variant="outline" className="w-full border-obvian-cyan text-obvian-cyan hover:bg-obvian-cyan/10">
-                    Download Case Study
-                  </Button>
-                </div>
-              </div>
+            <div className="glass-card border border-cyan-400/10 rounded-2xl shadow-lg p-6 animate-fade-in-up delay-200">
+              <h3 className="text-lg font-bold text-white mb-4">Testimonials</h3>
+              <ul className="space-y-4">
+                {project.testimonials?.map((testimonial, idx) => (
+                  <li key={idx} className="animate-fade-in-up" style={{animationDelay: `${300 + idx * 80}ms`, animationFillMode: 'forwards'}}>
+                    <blockquote className="text-obvian-gray/90 italic mb-2">“{testimonial.text}”</blockquote>
+                    <div className="text-obvian-cyan font-semibold">{testimonial.author}</div>
+                    <div className="text-obvian-gray/70 text-sm">{testimonial.role}</div>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
@@ -359,33 +328,31 @@ const ProjectDetail = () => {
       {/* Related projects */}
       <section className="py-12 relative">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold mb-8 text-white">Related Projects</h2>
-          
+          <h2 className="text-2xl font-bold mb-8 text-white animate-fade-in-up delay-100">Related Projects</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {projects
               .filter(p => p.id !== project.id)
               .filter(p => p.tags.some(tag => project.tags.includes(tag)))
               .slice(0, 3)
-              .map((relatedProject) => (
-                <motion.div
+              .map((relatedProject, idx) => (
+                <div
                   key={relatedProject.id}
-                  className="bg-obvian-black/60 border border-obvian-cyan/20 rounded-xl overflow-hidden group hover:border-obvian-cyan/50 transition-all"
-                  whileHover={{ y: -5, boxShadow: "0 10px 30px -10px rgba(33,230,193,0.3)" }}
+                  className="glass-card border border-cyan-400/10 bg-obvian-black/60 rounded-xl overflow-hidden group hover:border-obvian-cyan/50 transition-all animate-fade-in-up"
+                  style={{animationDelay: `${100 + idx * 100}ms`, animationFillMode: 'forwards'}}
                 >
                   <div className="relative h-48 overflow-hidden">
-                    <img 
-                      src={relatedProject.gallery?.[0] || relatedProject.image} 
+                    <img
+                      src={relatedProject.gallery?.[0]}
                       alt={relatedProject.title}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-obvian-black to-transparent"></div>
                   </div>
-                  
                   <div className="p-5">
                     <h3 className="text-lg font-bold mb-2 text-white">{relatedProject.title}</h3>
                     <p className="text-obvian-gray/80 text-sm mb-4 line-clamp-2">{relatedProject.description}</p>
-                    
-                    <Link 
+                    <Link
                       to={`/projects/${relatedProject.id}`}
                       className="text-obvian-cyan flex items-center hover:underline"
                     >
@@ -393,7 +360,7 @@ const ProjectDetail = () => {
                       <ArrowRight className="ml-1 h-4 w-4" />
                     </Link>
                   </div>
-                </motion.div>
+                </div>
               ))}
           </div>
         </div>

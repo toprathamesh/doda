@@ -1,4 +1,3 @@
-
 import { Card } from "@/components/ui/card";
 
 const features = [
@@ -64,31 +63,34 @@ const Features = () => {
     <section id="features" className="py-24 bg-obvian-blue relative overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 opacity-0 animate-fade-in">
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 opacity-0 animate-fade-in-up">
             Why Choose <span className="text-obvian-cyan">Obvian</span>
           </h2>
-          <p className="text-lg md:text-xl text-obvian-gray/90 max-w-3xl mx-auto opacity-0 animate-fade-in animation-delay-300">
+          <p className="text-lg md:text-xl text-obvian-gray/90 max-w-3xl mx-auto opacity-0 animate-fade-in-up delay-200">
             Discover the features that make Obvian the future of urban living and working.
           </p>
         </div>
-        
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
-            <Card 
+            <Card
               key={feature.title}
-              className="bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-colors p-8 rounded-xl opacity-0 animate-fade-in"
-              style={{ animationDelay: `${300 + index * 100}ms` }}
+              className={`glass-card border border-cyan-400/10 shadow-lg p-8 rounded-2xl opacity-0 animate-fade-in-up`}
+              style={{ animationDelay: `${200 + index * 100}ms`, animationFillMode: 'forwards' }}
             >
               <div className="bg-obvian-cyan/20 p-3 rounded-xl inline-flex text-obvian-cyan mb-6">
+                {/* Use loading="lazy" for SVGs if possible */}
                 {feature.icon}
               </div>
-              <h3 className="text-xl font-bold text-white mb-3">{feature.title}</h3>
-              <p className="text-obvian-gray/80">{feature.description}</p>
+              <h3 className="text-xl font-bold text-white mb-3 tracking-tight leading-tight">
+                {feature.title}
+              </h3>
+              <p className="text-obvian-gray/80 leading-relaxed text-base md:text-lg">
+                {feature.description}
+              </p>
             </Card>
           ))}
         </div>
       </div>
-      
       {/* Decorative elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-obvian-cyan/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-obvian-cyan/5 rounded-full translate-y-1/3 -translate-x-1/3"></div>

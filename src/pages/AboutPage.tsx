@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import NavBar from "@/components/NavBar";
@@ -93,7 +92,7 @@ const AboutPage = () => {
       <section className="py-20 relative overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
+            <div className="animate-fade-in-up delay-100">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
                 Our <span className="text-obvian-cyan">Mission</span>
               </h2>
@@ -104,16 +103,16 @@ const AboutPage = () => {
                 We're challenging the traditional notion of static spaces by developing innovative technology and design solutions that make every square foot more valuable, useful, and delightful.
               </p>
             </div>
-            
-            <div className="relative h-[400px] rounded-xl overflow-hidden neon-glow">
+            <div className="relative h-[400px] rounded-xl overflow-hidden neon-glow animate-fade-in-up delay-200">
               <div className="absolute inset-0 bg-gradient-to-br from-obvian-black/40 to-obvian-black/95 backdrop-blur-sm z-10"></div>
               <img 
                 src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d" 
-                alt="Obvian Mission" 
+                alt="Obvian Mission: Adaptive Living" 
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 scale-105 hover:scale-110" 
+                loading="lazy"
               />
               <div className="absolute inset-0 flex items-center justify-center z-20">
-                <div className="glass-card p-8 max-w-md text-center">
+                <div className="glass-card border border-cyan-400/10 p-8 max-w-md text-center">
                   <h3 className="text-2xl font-bold text-white mb-4">Adaptive Living</h3>
                   <p className="text-obvian-gray">Spaces that evolve with your lifestyle, needs, and aspirations.</p>
                 </div>
@@ -160,21 +159,22 @@ const AboutPage = () => {
       {/* Team section */}
       <section className="py-20 relative overflow-hidden">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-16 animate-fade-in-up delay-100">
             Our <span className="text-obvian-cyan">Team</span>
           </h2>
-          
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {team.map((member, index) => (
               <div 
                 key={member.name}
-                className="glass-card rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(33,230,193,0.2)]"
+                className="glass-card border border-cyan-400/10 rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(33,230,193,0.2)] animate-fade-in-up"
+                style={{ animationDelay: `${100 + index * 80}ms`, animationFillMode: 'forwards' }}
               >
                 <div className="relative h-80">
                   <img 
                     src={member.image} 
-                    alt={member.name}
+                    alt={`Team member: ${member.name}`} 
                     className="w-full h-full object-cover" 
+                    loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-obvian-black to-transparent"></div>
                 </div>

@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -59,7 +58,7 @@ const HowItWorks = () => {
       
       <div className="container mx-auto px-4 relative z-10">
         <motion.div 
-          className="text-center mb-16"
+          className="text-center mb-16 animate-fade-in-up delay-100"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.7 }}
@@ -74,7 +73,7 @@ const HowItWorks = () => {
         
         <div className="max-w-5xl mx-auto">
           <motion.div 
-            className="flex overflow-x-auto py-2 mb-8 hide-scrollbar"
+            className="flex overflow-x-auto py-2 mb-8 hide-scrollbar animate-fade-in-up delay-200"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.7, delay: 0.2 }}
@@ -84,7 +83,7 @@ const HowItWorks = () => {
                 <motion.button
                   key={space.title}
                   onClick={() => setActiveTab(index)}
-                  className={`px-6 py-3 rounded-full whitespace-nowrap transition-all ${
+                  className={`px-6 py-3 rounded-full whitespace-nowrap transition-all font-semibold shadow-cyan-glow ${
                     activeTab === index
                       ? "bg-obvian-cyan text-obvian-black font-medium"
                       : "bg-obvian-black border border-obvian-cyan/30 text-obvian-cyan hover:bg-obvian-cyan/10"
@@ -98,15 +97,15 @@ const HowItWorks = () => {
             </div>
           </motion.div>
           
-          <motion.div 
-            className="bg-obvian-black border border-obvian-cyan/20 rounded-2xl shadow-[0_0_30px_rgba(33,230,193,0.1)] overflow-hidden"
+          <motion.div
+            className="bg-obvian-black border border-obvian-cyan/20 rounded-2xl shadow-[0_0_30px_rgba(33,230,193,0.1)] overflow-hidden animate-fade-in-up delay-300"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.7, delay: 0.4 }}
             layoutId="transformationContainer"
           >
             <div className="grid md:grid-cols-2">
-              <motion.div 
+              <motion.div
                 className="p-8 md:p-12 flex flex-col justify-between"
                 key={`content-${activeTab}`}
                 initial={{ opacity: 0 }}
@@ -114,21 +113,21 @@ const HowItWorks = () => {
                 transition={{ duration: 0.5 }}
               >
                 <div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 animate-fade-in-up delay-100">
                     {spaceTransformations[activeTab].title}
                   </h3>
-                  <p className="text-obvian-gray/90 mb-8">
+                  <p className="text-obvian-gray/90 mb-8 animate-fade-in-up delay-200">
                     {spaceTransformations[activeTab].description}
                   </p>
-                  
                   <div className="space-y-4 mb-8">
                     {spaceTransformations[activeTab].features.map((feature, idx) => (
-                      <motion.div 
-                        key={feature} 
-                        className="flex items-start"
+                      <motion.div
+                        key={feature}
+                        className="flex items-start animate-fade-in-up"
                         initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: idx * 0.1 }}
+                        style={{ animationDelay: `${200 + idx * 80}ms`, animationFillMode: 'forwards' }}
                       >
                         <div className="bg-obvian-cyan/20 p-1 rounded-full mt-1">
                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" className="w-4 h-4 text-obvian-cyan">
@@ -140,17 +139,15 @@ const HowItWorks = () => {
                     ))}
                   </div>
                 </div>
-                
-                <Button 
-                  className="bg-obvian-cyan text-obvian-black hover:bg-obvian-cyan/80 mt-4 button-hover self-start"
+                <Button
+                  className="bg-obvian-cyan text-obvian-black hover:bg-obvian-cyan/80 mt-4 button-hover font-semibold shadow-cyan-glow self-start"
                   asChild
                 >
                   <Link to="/services">Explore Services</Link>
                 </Button>
               </motion.div>
-              
-              <motion.div 
-                className="relative h-80 md:h-auto overflow-hidden"
+              <motion.div
+                className="relative h-80 md:h-auto overflow-hidden animate-fade-in-up delay-400"
                 key={`image-${activeTab}`}
               >
                 <motion.div
@@ -159,15 +156,15 @@ const HowItWorks = () => {
                   animate={{ opacity: 0.9 }}
                   transition={{ duration: 0.5 }}
                 />
-                <motion.img 
-                  src={`https://images.unsplash.com/photo-1550${1000 + activeTab * 1000}-80022131f5a1`} 
+                <motion.img
+                  src={`https://images.unsplash.com/photo-1550${1000 + activeTab * 1000}-80022131f5a1`}
                   alt={spaceTransformations[activeTab].title}
                   className="w-full h-full object-cover mix-blend-overlay"
                   initial={{ scale: 1.2, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ duration: 0.7 }}
+                  loading="lazy"
                 />
-                
                 <div className="absolute top-4 left-4">
                   <div className="bg-obvian-black/30 backdrop-blur-sm px-3 py-1 rounded-full">
                     <div className="flex items-center space-x-2">
@@ -176,20 +173,17 @@ const HowItWorks = () => {
                     </div>
                   </div>
                 </div>
-                
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <motion.div 
-                    className="text-center px-6 py-4 glass-card rounded-xl max-w-xs"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.3, duration: 0.5 }}
-                  >
-                    <h4 className="text-white font-bold mb-2">Transform in seconds</h4>
-                    <p className="text-white/90 text-sm">
-                      Spaces adapt to your needs with a simple voice command or tap in the app
-                    </p>
-                  </motion.div>
-                </div>
+                <motion.div
+                  className="text-center px-6 py-4 glass-card border border-cyan-400/10 rounded-xl max-w-xs animate-fade-in-up delay-500"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.3, duration: 0.5 }}
+                >
+                  <h4 className="text-white font-bold mb-2">Transform in seconds</h4>
+                  <p className="text-white/90 text-sm">
+                    Spaces adapt to your needs with a simple voice command or tap in the app
+                  </p>
+                </motion.div>
               </motion.div>
             </div>
           </motion.div>

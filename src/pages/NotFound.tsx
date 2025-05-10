@@ -1,4 +1,3 @@
-
 import { useLocation, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -61,7 +60,17 @@ const NotFound = () => {
     >
       {/* Animated background elements */}
       <div className="absolute inset-0 bg-grid-pattern opacity-10 z-0"></div>
-      
+      {/* Building accent */}
+      <svg className="absolute -top-10 right-10 w-40 h-40 opacity-10 z-0 animate-float" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="12" y="20" width="40" height="36" rx="4" fill="#21E6C1" stroke="#1A2238" strokeWidth="3"/>
+        <rect x="24" y="36" width="8" height="12" fill="#1A2238"/>
+        <rect x="36" y="36" width="8" height="12" fill="#1A2238"/>
+        <rect x="28" y="28" width="8" height="6" fill="#1A2238"/>
+        <rect x="20" y="28" width="4" height="6" fill="#1A2238"/>
+        <rect x="40" y="28" width="4" height="6" fill="#1A2238"/>
+        <rect x="30" y="48" width="4" height="8" fill="#FFD700"/>
+        <rect x="18" y="56" width="28" height="4" fill="#1A2238"/>
+      </svg>
       {/* Glowing elements */}
       <div className="absolute top-20 left-20 w-72 h-72 rounded-full bg-obvian-cyan/5 filter blur-3xl animate-pulse-soft"></div>
       <div className="absolute bottom-20 right-20 w-96 h-96 rounded-full bg-obvian-cyan/3 filter blur-3xl animate-pulse-soft animation-delay-300"></div>
@@ -106,9 +115,10 @@ const NotFound = () => {
         
         <motion.p 
           variants={itemVariants}
-          className="text-obvian-gray/80 mb-8"
+          className="text-obvian-gray/80 mb-8 text-base md:text-lg"
         >
-          The page you're looking for hasn't been built or converted yet. Let's take you back to our existing spaces.
+          The page you're looking for hasn't been built or converted yet. Let's take you back to our existing spaces.<br/>
+          If you need help, <Link to="/contact" className="text-obvian-cyan underline hover:text-white">contact support</Link>.
         </motion.p>
         
         <motion.div variants={itemVariants}>

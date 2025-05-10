@@ -1,4 +1,3 @@
-
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -81,46 +80,46 @@ const SpacesPage = () => {
             </div>
             
             <div className="lg:col-span-8">
-              <div className="bg-obvian-darkblack/60 rounded-xl overflow-hidden border border-obvian-cyan/20 animate-fade-in animation-delay-300">
-                <div className="relative h-72 md:h-96">
-                  <img 
-                    src={spaceTypes[activeSpace].image} 
-                    alt={spaceTypes[activeSpace].name}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-obvian-black to-transparent"></div>
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <div className="flex items-center space-x-2">
-                      <div className="h-2.5 w-2.5 rounded-full bg-obvian-cyan animate-pulse"></div>
-                      <span className="text-obvian-cyan text-sm font-semibold">Available Now</span>
+              <div className="grid md:grid-cols-2 gap-8">
+                {spaceTypes.map((space, idx) => (
+                  <div
+                    key={space.id}
+                    className="glass-card border border-cyan-400/10 rounded-2xl shadow-lg overflow-hidden animate-fade-in-up"
+                    style={{ animationDelay: `${100 + idx * 100}ms`, animationFillMode: 'forwards' }}
+                  >
+                    <div className="relative h-64 w-full">
+                      <img
+                        src={space.image}
+                        alt={space.name}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-obvian-black/70 to-transparent"></div>
+                    </div>
+                    <div className="p-6 md:p-8">
+                      <h2 className="text-3xl font-bold mb-3 text-white">{space.name}</h2>
+                      <p className="text-obvian-gray/80 mb-6 text-base md:text-lg">{space.description}</p>
+                      <div className="grid md:grid-cols-2 gap-4 mb-8">
+                        {space.features.map((feature, fidx) => (
+                          <div key={fidx} className="flex items-center space-x-3 bg-obvian-black/50 p-3 rounded-lg animate-fade-in-up" style={{animationDelay: `${fidx * 80}ms`, animationFillMode: 'forwards'}}>
+                            <div className="bg-obvian-cyan/20 p-1.5 rounded-full">
+                              <Star className="h-4 w-4 text-obvian-cyan" />
+                            </div>
+                            <span className="text-white text-sm md:text-base">{feature}</span>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="flex flex-col sm:flex-row gap-4">
+                        <Button className="bg-obvian-cyan text-obvian-black hover:bg-obvian-cyan/80 button-hover font-semibold shadow-cyan-glow">
+                          Book a Tour
+                        </Button>
+                        <Button variant="outline" className="border-obvian-cyan/50 text-obvian-cyan hover:bg-obvian-cyan/10 button-hover font-semibold">
+                          Learn More
+                        </Button>
+                      </div>
                     </div>
                   </div>
-                </div>
-                
-                <div className="p-6 md:p-8">
-                  <h2 className="text-3xl font-bold mb-3">{spaceTypes[activeSpace].name}</h2>
-                  <p className="text-obvian-gray/80 mb-6">{spaceTypes[activeSpace].description}</p>
-                  
-                  <div className="grid md:grid-cols-2 gap-4 mb-8">
-                    {spaceTypes[activeSpace].features.map((feature, idx) => (
-                      <div key={idx} className="flex items-center space-x-3 bg-obvian-black/50 p-3 rounded-lg animate-fade-in" style={{animationDelay: `${idx * 100}ms`}}>
-                        <div className="bg-obvian-cyan/20 p-1.5 rounded-full">
-                          <Star className="h-4 w-4 text-obvian-cyan" />
-                        </div>
-                        <span>{feature}</span>
-                      </div>
-                    ))}
-                  </div>
-                  
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <Button className="bg-obvian-cyan text-obvian-black hover:bg-obvian-cyan/80 button-hover">
-                      Book a Tour
-                    </Button>
-                    <Button variant="outline" className="border-obvian-cyan/50 text-obvian-cyan hover:bg-obvian-cyan/10 button-hover">
-                      Learn More
-                    </Button>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
