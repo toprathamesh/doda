@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,14 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Obvian brand colors
+				obvian: {
+					blue: '#1A2238',
+					gray: '#E6E8EB',
+					cyan: '#21E6C1',
+					black: '#232323',
+					gold: '#FFD700',
 				}
 			},
 			borderRadius: {
@@ -84,12 +93,56 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'fade-in-up': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateY(20px)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
+				},
+				'fade-in': {
+					'0%': {
+						opacity: '0'
+					},
+					'100%': {
+						opacity: '1'
+					}
+				},
+				'pulse-soft': {
+					'0%, 100%': {
+						opacity: '1'
+					},
+					'50%': {
+						opacity: '0.8'
+					}
+				},
+				'morph-shape': {
+					'0%': {
+						borderRadius: '60% 40% 30% 70%/60% 30% 70% 40%'
+					},
+					'50%': {
+						borderRadius: '30% 60% 70% 40%/50% 60% 30% 60%'
+					},
+					'100%': {
+						borderRadius: '60% 40% 30% 70%/60% 30% 70% 40%'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
-			}
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in-up': 'fade-in-up 0.7s ease-out forwards',
+				'fade-in': 'fade-in 0.5s ease-out forwards',
+				'pulse-soft': 'pulse-soft 3s infinite ease-in-out',
+				'morph-shape': 'morph-shape 8s ease-in-out infinite'
+			},
+			fontFamily: {
+				poppins: ['Poppins', 'sans-serif'],
+			},
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
