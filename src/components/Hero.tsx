@@ -88,108 +88,57 @@ const Hero = () => {
             </motion.div>
           </motion.div>
           <motion.div
-            className="relative h-[400px] md:h-[500px]"
+            className="relative h-[400px] md:h-[500px] flex items-center justify-center"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
           >
-            {/* Morphing room visualization */}
-            <div className="absolute inset-0 rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(33,230,193,0.2)] animate-morph-shape">
-              {/* Add a solid/opaque background behind the SVG */}
-              <div className="absolute inset-0 bg-obvian-black/90 z-0" />
-              <div className="absolute inset-0 bg-gradient-to-br from-obvian-black/40 to-obvian-black/95 backdrop-blur-sm z-10"></div>
-              {/* Animated SVG cityscape inside the bubble */}
-              <svg viewBox="0 0 400 400" className="absolute inset-0 w-full h-full z-20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            {/* New animated 3D cityscape with floating glowing shapes and parallax */}
+            <div className="relative w-full h-full flex items-center justify-center">
+              <svg viewBox="0 0 400 400" className="w-full h-full" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g>
-                  {/* Buildings */}
-                  <rect x="40" y="220" width="40" height="120" rx="8" fill="#21E6C1" opacity="0.28">
-                    <animate attributeName="y" values="220;210;220" dur="6s" repeatCount="indefinite" />
+                  {/* 3D cityscape buildings with parallax effect */}
+                  <rect x="60" y="220" width="40" height="120" rx="10" fill="#21E6C1" opacity="0.22">
+                    <animate attributeName="y" values="220;210;220" dur="7s" repeatCount="indefinite" />
                   </rect>
-                  <rect x="100" y="180" width="60" height="160" rx="12" fill="#21E6C1" opacity="0.32">
-                    <animate attributeName="y" values="180;170;180" dur="7s" repeatCount="indefinite" />
+                  <rect x="120" y="160" width="70" height="180" rx="14" fill="#21E6C1" opacity="0.28">
+                    <animate attributeName="y" values="160;150;160" dur="8s" repeatCount="indefinite" />
                   </rect>
-                  <rect x="180" y="250" width="30" height="90" rx="6" fill="#21E6C1" opacity="0.22">
-                    <animate attributeName="y" values="250;240;250" dur="5.5s" repeatCount="indefinite" />
+                  <rect x="210" y="250" width="40" height="90" rx="8" fill="#21E6C1" opacity="0.18">
+                    <animate attributeName="y" values="250;240;250" dur="6s" repeatCount="indefinite" />
                   </rect>
-                  <rect x="230" y="200" width="80" height="140" rx="14" fill="#21E6C1" opacity="0.30">
-                    <animate attributeName="y" values="200;190;200" dur="8s" repeatCount="indefinite" />
-                  </rect>
-                  <rect x="330" y="270" width="30" height="70" rx="6" fill="#21E6C1" opacity="0.19">
-                    <animate attributeName="y" values="270;260;270" dur="6.5s" repeatCount="indefinite" />
+                  <rect x="270" y="180" width="90" height="160" rx="16" fill="#21E6C1" opacity="0.32">
+                    <animate attributeName="y" values="180;170;180" dur="9s" repeatCount="indefinite" />
                   </rect>
                   {/* Glowing windows */}
-                  <rect x="50" y="320" width="8" height="16" fill="#fff" opacity="0.9">
-                    <animate attributeName="opacity" values="0.9;0.2;0.9" dur="2s" repeatCount="indefinite" />
+                  <rect x="75" y="320" width="8" height="16" fill="#fff" opacity="0.8">
+                    <animate attributeName="opacity" values="0.8;0.2;0.8" dur="2.2s" repeatCount="indefinite" />
                   </rect>
-                  <rect x="120" y="300" width="10" height="20" fill="#fff" opacity="0.9">
-                    <animate attributeName="opacity" values="0.9;0.1;0.9" dur="2.5s" repeatCount="indefinite" />
+                  <rect x="140" y="300" width="10" height="20" fill="#fff" opacity="0.8">
+                    <animate attributeName="opacity" values="0.8;0.1;0.8" dur="2.7s" repeatCount="indefinite" />
                   </rect>
-                  <rect x="250" y="320" width="12" height="18" fill="#fff" opacity="0.9">
-                    <animate attributeName="opacity" values="0.9;0.3;0.9" dur="2.2s" repeatCount="indefinite" />
+                  <rect x="290" y="320" width="12" height="18" fill="#fff" opacity="0.8">
+                    <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2.4s" repeatCount="indefinite" />
                   </rect>
-                  {/* Moving lights */}
+                  {/* Floating glowing shapes */}
+                  <circle cx="100" cy="100" r="18" fill="#21E6C1" opacity="0.12">
+                    <animate attributeName="cy" values="100;80;100" dur="7s" repeatCount="indefinite" />
+                  </circle>
+                  <circle cx="320" cy="70" r="12" fill="#21E6C1" opacity="0.16">
+                    <animate attributeName="cy" values="70;90;70" dur="8s" repeatCount="indefinite" />
+                  </circle>
+                  <rect x="200" y="60" width="22" height="22" rx="6" fill="#21E6C1" opacity="0.10">
+                    <animate attributeName="y" values="60;40;60" dur="6s" repeatCount="indefinite" />
+                  </rect>
+                  {/* Parallax glowing dots */}
                   <circle cx="80" cy="370" r="4" fill="#21E6C1">
                     <animate attributeName="cx" values="80;320;80" dur="7s" repeatCount="indefinite" />
                   </circle>
-                  <circle cx="320" cy="390" r="3" fill="#fff" opacity="0.8">
+                  <circle cx="320" cy="390" r="3" fill="#fff" opacity="0.7">
                     <animate attributeName="cx" values="320;80;320" dur="8s" repeatCount="indefinite" />
-                  </circle>
-                  {/* Floating tech elements */}
-                  <rect x="180" y="120" width="18" height="18" rx="4" fill="#21E6C1" opacity="0.18">
-                    <animate attributeName="y" values="120;100;120" dur="5s" repeatCount="indefinite" />
-                  </rect>
-                  <circle cx="300" cy="100" r="10" fill="#21E6C1" opacity="0.16">
-                    <animate attributeName="cy" values="100;80;100" dur="6s" repeatCount="indefinite" />
                   </circle>
                 </g>
               </svg>
-              <motion.div 
-                className="bg-obvian-black/60 backdrop-blur-md p-4 rounded-xl border border-obvian-cyan/20"
-                animate={{ 
-                  y: [0, -5, 0],
-                  boxShadow: [
-                    "0 0 20px rgba(33,230,193,0.1)", 
-                    "0 0 25px rgba(33,230,193,0.2)", 
-                    "0 0 20px rgba(33,230,193,0.1)"
-                  ]
-                }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <motion.h3 
-                  className="text-2xl font-bold text-white mb-2 flex items-center"
-                  key={spaceTypes[activeSpace].name}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <span className="flex h-3 w-3 mr-2">
-                    <span className="animate-ping absolute h-3 w-3 rounded-full bg-obvian-cyan opacity-75"></span>
-                    <span className="relative rounded-full h-3 w-3 bg-obvian-cyan"></span>
-                  </span>
-                  {spaceTypes[activeSpace].name} Space
-                </motion.h3>
-                <motion.p 
-                  className="text-obvian-gray"
-                  key={`desc-${spaceTypes[activeSpace].name}`}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.3, delay: 0.1 }}
-                >
-                  {spaceTypes[activeSpace].description}
-                </motion.p>
-                <div className="flex gap-2 mt-4">
-                  {spaceTypes.map((space, index) => (
-                    <button
-                      key={space.name}
-                      className={`w-2 h-2 rounded-full transition-all ${
-                        index === activeSpace ? 'bg-obvian-cyan w-6' : 'bg-obvian-gray/50'
-                      }`}
-                      onClick={() => setActiveSpace(index)}
-                      aria-label={`Switch to ${space.name}`}
-                    />
-                  ))}
-                </div>
-              </motion.div>
             </div>
           </motion.div>
         </div>

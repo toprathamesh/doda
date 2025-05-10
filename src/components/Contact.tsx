@@ -60,12 +60,16 @@ const Contact = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="animate-fade-in-up delay-100">
-            <h2 className="text-3xl md:text-4xl font-bold text-obvian-blue mb-6">
-              Join the <span className="text-obvian-cyan">Obvian</span> Community
-            </h2>
-            <p className="text-lg text-obvian-blue/70 mb-8">
-              Ready to experience the future of flexible urban living? Join our waitlist or schedule a virtual tour today to see how Obvian can transform your lifestyle.
-            </p>
+            <div className="mb-6">
+              <div className="inline-block px-6 py-4 rounded-2xl glass-card shadow-xl border border-cyan-400/20 bg-gradient-to-br from-obvian-cyan/10 to-white/5 backdrop-blur-md">
+                <h2 className="text-3xl md:text-4xl font-bold text-white drop-shadow-lg">
+                  Join the <span className="text-obvian-cyan glow-text">Obvian</span> Community
+                </h2>
+                <p className="text-lg text-white/90 mt-2 drop-shadow-md">
+                  Ready to experience the future of flexible urban living? Join our waitlist or schedule a virtual tour today to see how Obvian can transform your lifestyle.
+                </p>
+              </div>
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
               <div className="bg-white/80 glass-card p-6 rounded-xl shadow-lg animate-fade-in-up delay-200">
                 <div className="text-obvian-cyan mb-3">

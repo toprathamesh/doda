@@ -168,15 +168,23 @@ const HowItWorks = () => {
                   </div>
                 </div>
                 <motion.div
-                  className="text-center px-6 py-4 glass-card border border-cyan-400/10 rounded-xl max-w-xs animate-fade-in-up delay-500"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.3, duration: 0.5 }}
+                  className="absolute inset-0 flex items-center justify-center z-20"
                 >
-                  <h4 className="text-white font-bold mb-2">Transform in seconds</h4>
-                  <p className="text-white/90 text-sm">
-                    Spaces adapt to your needs with a simple voice command or tap in the app
-                  </p>
+                  <div className="glass-card border border-cyan-400/20 rounded-2xl shadow-2xl px-8 py-6 max-w-xs mx-auto backdrop-blur-md bg-white/10 relative animate-fade-in-up delay-500">
+                    {/* Animated icon */}
+                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" className="mx-auto mb-2">
+                      <g>
+                        <path d="M20 6 L24 20 H28 L16 34 L18 22 H12 L20 6 Z" fill="#21E6C1" opacity="0.8">
+                          <animate attributeName="opacity" values="0.8;1;0.8" dur="2s" repeatCount="indefinite" />
+                          <animateTransform attributeName="transform" type="scale" values="1;1.1;1" dur="2s" repeatCount="indefinite" additive="sum" />
+                        </path>
+                      </g>
+                    </svg>
+                    <h4 className="text-white font-bold mb-2 text-lg drop-shadow-lg">Transform in seconds</h4>
+                    <p className="text-white/90 text-sm drop-shadow-md">
+                      Spaces adapt to your needs with a simple voice command or tap in the app
+                    </p>
+                  </div>
                 </motion.div>
               </motion.div>
             </div>
