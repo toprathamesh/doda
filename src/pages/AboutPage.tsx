@@ -4,6 +4,7 @@ import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import Logo from "@/components/Logo";
 import BuildingAnimation3 from "@/components/ui/BuildingAnimation3";
+import { slideUp } from "@/lib/animations";
 
 const AboutPage = () => {
   const [mounted, setMounted] = useState(false);
@@ -18,22 +19,22 @@ const AboutPage = () => {
     {
       year: "2020",
       title: "The Idea",
-      description: "Obvian was born from a simple observation: urban spaces are static, while our needs are dynamic."
+      description: "Doda was born from a simple observation: urban spaces are static, while our needs are dynamic."
     },
     {
       year: "2021",
       title: "Research & Development",
-      description: "Our team of architects, engineers, and designers developed the core technology behind Obvian's transformable spaces."
+      description: "Our team of architects, engineers, and designers developed the core technology behind Doda's transformable spaces."
     },
     {
       year: "2023",
       title: "First Prototype",
-      description: "The first fully functional Obvian space was built and tested, proving that our vision could become reality."
+      description: "The first fully functional Doda space was built and tested, proving that our vision could become reality."
     },
     {
       year: "2024",
       title: "Launch",
-      description: "Obvian opened its doors to the first residents and flexible space users in major metropolitan areas."
+      description: "Doda opened its doors to the first residents and flexible space users in major metropolitan areas."
     },
     {
       year: "2025",
@@ -67,26 +68,42 @@ const AboutPage = () => {
   ];
 
   return (
-    <div className={`min-h-screen bg-obvian-black ${mounted ? 'animate-fade-in' : 'opacity-0'}`}>
+    <motion.div
+      className={`min-h-screen bg-doda-black ${mounted ? 'animate-fade-in' : 'opacity-0'}`}
+      variants={slideUp}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+    >
       <NavBar />
       
       {/* Hero section */}
-      <section className="pt-32 pb-20 relative bg-obvian-black overflow-hidden">
+      <section className="pt-32 pb-20 relative bg-doda-black overflow-hidden">
         <BuildingAnimation3 className="absolute inset-0 w-full h-full z-0" />
-        <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
-        <div className="absolute top-20 right-10 w-64 h-64 rounded-full bg-obvian-cyan/10 animate-pulse-soft"></div>
-        <div className="absolute bottom-20 left-10 w-96 h-96 rounded-full bg-obvian-cyan/5 animate-pulse-soft animation-delay-300"></div>
+        <div className="absolute inset-0 bg-grid-doda-cyan/10 [mask-image:linear-gradient(to_bottom,white_5%,transparent_50%)]"></div>
+        <div className="absolute top-20 right-10 w-64 h-64 rounded-full bg-doda-cyan/10 animate-pulse-soft"></div>
+        <div className="absolute bottom-20 left-10 w-96 h-96 rounded-full bg-doda-cyan/5 animate-pulse-soft animation-delay-300"></div>
         
         <div className="container mx-auto px-4 text-center relative z-10">
           <div className="mx-auto flex justify-center mb-8">
             <Logo size="large" />
           </div>
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-            About <span className="bg-gradient-to-r from-obvian-cyan to-obvian-gray bg-clip-text text-transparent">Obvian</span>
-          </h1>
-          <p className="text-xl text-obvian-gray/90 max-w-3xl mx-auto">
-            Transforming how people live, work, and experience urban spaces through innovative design and dynamic flexibility.
-          </p>
+          <motion.h1 
+            className="text-4xl md:text-6xl font-extrabold tracking-tighter mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            About <span className="bg-gradient-to-r from-doda-cyan to-doda-gray bg-clip-text text-transparent">Doda</span>
+          </motion.h1>
+          <motion.p 
+            className="text-xl text-doda-gray/90 max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            We are reimagining the relationship between people and their physical environments.
+          </motion.p>
         </div>
       </section>
       
@@ -96,17 +113,17 @@ const AboutPage = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="animate-fade-in-up delay-100">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                Our <span className="text-obvian-cyan">Mission</span>
+                Our <span className="text-doda-cyan">Mission</span>
               </h2>
-              <p className="text-obvian-gray/90 mb-6">
-                At Obvian, we believe that urban spaces should adapt to people's lives, not the other way around. Our mission is to create living environments that transform based on your needs, seamlessly shifting between functions throughout the day.
+              <p className="text-doda-gray/90 mb-6">
+                At Doda, we believe that urban spaces should adapt to people's lives, not the other way around. Our mission is to create living environments that transform based on your needs, seamlessly shifting between functions throughout the day.
               </p>
-              <p className="text-obvian-gray/90">
+              <p className="text-doda-gray/90">
                 We're challenging the traditional notion of static spaces by developing innovative technology and design solutions that make every square foot more valuable, useful, and delightful.
               </p>
             </div>
             <div className="relative h-[400px] rounded-xl overflow-hidden neon-glow animate-fade-in-up delay-200">
-              <div className="absolute inset-0 bg-gradient-to-br from-obvian-black/40 to-obvian-black/95 backdrop-blur-sm z-10"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-doda-black/40 to-doda-black/95 backdrop-blur-sm z-10"></div>
               <video
                 src="https://static.vecteezy.com/system/resources/previews/033/658/784/mp4/modern-office-building-with-silhouettes-of-businessmen-walking-on-sidewalk-video.mp4"
                 autoPlay
@@ -121,7 +138,7 @@ const AboutPage = () => {
               <div className="absolute inset-0 flex items-center justify-center z-20">
                 <div className="glass-card border border-cyan-400/10 p-8 max-w-md text-center">
                   <h3 className="text-2xl font-bold text-white mb-4">Adaptive Living</h3>
-                  <p className="text-obvian-gray">Spaces that evolve with your lifestyle, needs, and aspirations.</p>
+                  <p className="text-doda-gray">Spaces that evolve with your lifestyle, needs, and aspirations.</p>
                 </div>
               </div>
             </div>
@@ -130,15 +147,15 @@ const AboutPage = () => {
       </section>
       
       {/* Timeline section */}
-      <section className="py-20 relative overflow-hidden bg-obvian-darkblack">
+      <section className="py-20 relative overflow-hidden bg-doda-darkblack">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-16">
-            Our <span className="text-obvian-cyan">Journey</span>
+            Our <span className="text-doda-cyan">Journey</span>
           </h2>
           
           <div className="relative">
             {/* Timeline line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-obvian-cyan/20"></div>
+            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-doda-cyan/20"></div>
             
             {/* Timeline events */}
             <div className="space-y-20">
@@ -148,13 +165,13 @@ const AboutPage = () => {
                   className={`relative flex ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center`}
                 >
                   {/* Timeline dot */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2 w-5 h-5 rounded-full bg-obvian-cyan neon-glow"></div>
+                  <div className="absolute left-1/2 transform -translate-x-1/2 w-5 h-5 rounded-full bg-doda-cyan neon-glow"></div>
                   
                   {/* Content */}
                   <div className="w-full md:w-5/12 p-6 glass-card rounded-xl">
-                    <div className="text-obvian-cyan text-2xl font-bold mb-2">{event.year}</div>
+                    <div className="text-doda-cyan text-2xl font-bold mb-2">{event.year}</div>
                     <h3 className="text-xl text-white font-bold mb-4">{event.title}</h3>
-                    <p className="text-obvian-gray/90">{event.description}</p>
+                    <p className="text-doda-gray/90">{event.description}</p>
                   </div>
                 </div>
               ))}
@@ -167,7 +184,7 @@ const AboutPage = () => {
       <section className="py-20 relative overflow-hidden">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-16 animate-fade-in-up delay-100">
-            Our <span className="text-obvian-cyan">Team</span>
+            Our <span className="text-doda-cyan">Team</span>
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {team.map((member, index) => (
@@ -183,11 +200,11 @@ const AboutPage = () => {
                     className="w-full h-full object-cover" 
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-obvian-black to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-doda-black to-transparent"></div>
                 </div>
                 <div className="p-6 text-center">
                   <h3 className="text-xl text-white font-bold mb-1">{member.name}</h3>
-                  <p className="text-obvian-cyan">{member.role}</p>
+                  <p className="text-doda-cyan">{member.role}</p>
                 </div>
               </div>
             ))}
@@ -196,7 +213,7 @@ const AboutPage = () => {
       </section>
       
       <Footer />
-    </div>
+    </motion.div>
   );
 };
 

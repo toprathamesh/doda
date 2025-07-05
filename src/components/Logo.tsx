@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Logo = ({ size = "medium" }: { size?: "small" | "medium" | "large" }) => {
   const dimensions = {
@@ -8,7 +9,7 @@ const Logo = ({ size = "medium" }: { size?: "small" | "medium" | "large" }) => {
   };
 
   return (
-    <div className="flex items-center gap-2">
+    <Link to="/" className="flex items-center space-x-2">
       <svg
         className={`block ${dimensions[size]}`}
         viewBox="0 0 48 48"
@@ -27,8 +28,8 @@ const Logo = ({ size = "medium" }: { size?: "small" | "medium" | "large" }) => {
       </svg>
       <span className={`font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-200 ${
         size === "small" ? "text-lg" : size === "medium" ? "text-2xl" : "text-4xl"
-      }`}>Obvian</span>
-    </div>
+      }`}>Doda</span>
+    </Link>
   );
 };
 

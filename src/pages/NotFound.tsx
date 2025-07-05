@@ -5,6 +5,7 @@ import { Home, AlertTriangle } from "lucide-react";
 import { motion } from "framer-motion";
 import Logo from "@/components/Logo";
 import BuildingAnimation3 from "@/components/ui/BuildingAnimation3";
+import { slideUp } from "@/lib/animations";
 
 const NotFound = () => {
   const location = useLocation();
@@ -53,11 +54,12 @@ const NotFound = () => {
   };
 
   return (
-    <motion.div 
-      className={`min-h-screen flex items-center justify-center bg-obvian-black text-white p-4 relative overflow-hidden ${mounted ? '' : 'opacity-0'}`}
-      initial="hidden"
-      animate="visible"
-      variants={containerVariants}
+    <motion.div
+      className={`min-h-screen flex items-center justify-center bg-doda-black text-white p-4 relative overflow-hidden ${mounted ? '' : 'opacity-0'}`}
+      variants={slideUp}
+      initial="initial"
+      animate="animate"
+      exit="exit"
     >
       {/* Animated SVG building background */}
       <BuildingAnimation3 className="absolute inset-0 w-full h-full z-0" />
@@ -73,17 +75,17 @@ const NotFound = () => {
         <rect x="18" y="56" width="28" height="4" fill="#1A2238"/>
       </svg>
       {/* Glowing elements */}
-      <div className="absolute top-20 left-20 w-72 h-72 rounded-full bg-obvian-cyan/5 filter blur-3xl animate-pulse-soft"></div>
-      <div className="absolute bottom-20 right-20 w-96 h-96 rounded-full bg-obvian-cyan/3 filter blur-3xl animate-pulse-soft animation-delay-300"></div>
+      <div className="absolute top-20 left-20 w-72 h-72 rounded-full bg-doda-cyan/5 filter blur-3xl animate-pulse-soft"></div>
+      <div className="absolute bottom-20 right-20 w-96 h-96 rounded-full bg-doda-cyan/3 filter blur-3xl animate-pulse-soft animation-delay-300"></div>
       
       {/* Glitching lines */}
       <div className="glitch-effect absolute inset-0 overflow-hidden z-0 pointer-events-none">
-        <div className="absolute h-[1px] w-full top-1/4 left-0 bg-gradient-to-r from-transparent via-obvian-cyan/30 to-transparent"></div>
-        <div className="absolute h-[1px] w-full top-2/4 left-0 bg-gradient-to-r from-transparent via-obvian-cyan/20 to-transparent"></div>
-        <div className="absolute h-[1px] w-full top-3/4 left-0 bg-gradient-to-r from-transparent via-obvian-cyan/40 to-transparent"></div>
-        <div className="absolute w-[1px] h-full left-1/4 top-0 bg-gradient-to-b from-transparent via-obvian-cyan/20 to-transparent"></div>
-        <div className="absolute w-[1px] h-full left-2/4 top-0 bg-gradient-to-b from-transparent via-obvian-cyan/30 to-transparent"></div>
-        <div className="absolute w-[1px] h-full left-3/4 top-0 bg-gradient-to-b from-transparent via-obvian-cyan/10 to-transparent"></div>
+        <div className="absolute h-[1px] w-full top-1/4 left-0 bg-gradient-to-r from-transparent via-doda-cyan/30 to-transparent"></div>
+        <div className="absolute h-[1px] w-full top-2/4 left-0 bg-gradient-to-r from-transparent via-doda-cyan/20 to-transparent"></div>
+        <div className="absolute h-[1px] w-full top-3/4 left-0 bg-gradient-to-r from-transparent via-doda-cyan/40 to-transparent"></div>
+        <div className="absolute w-[1px] h-full left-1/4 top-0 bg-gradient-to-b from-transparent via-doda-cyan/20 to-transparent"></div>
+        <div className="absolute w-[1px] h-full left-2/4 top-0 bg-gradient-to-b from-transparent via-doda-cyan/30 to-transparent"></div>
+        <div className="absolute w-[1px] h-full left-3/4 top-0 bg-gradient-to-b from-transparent via-doda-cyan/10 to-transparent"></div>
       </div>
       
       <motion.div 
@@ -95,8 +97,8 @@ const NotFound = () => {
         </motion.div>
       
         <motion.div variants={itemVariants} className="mb-6 flex justify-center">
-          <div className="w-24 h-24 rounded-full bg-obvian-cyan/20 flex items-center justify-center">
-            <AlertTriangle className="h-12 w-12 text-obvian-cyan animate-pulse" />
+          <div className="w-24 h-24 rounded-full bg-doda-cyan/20 flex items-center justify-center">
+            <AlertTriangle className="h-12 w-12 text-doda-cyan animate-pulse" />
           </div>
         </motion.div>
         
@@ -109,22 +111,22 @@ const NotFound = () => {
         
         <motion.p 
           variants={itemVariants}
-          className="text-xl text-obvian-gray mb-8"
+          className="text-xl text-doda-gray mb-8"
         >
           This space doesn't exist yet
         </motion.p>
         
         <motion.p 
           variants={itemVariants}
-          className="text-obvian-gray/80 mb-8 text-base md:text-lg"
+          className="text-doda-gray/80 mb-8 text-base md:text-lg"
         >
           The page you're looking for hasn't been built or converted yet. Let's take you back to our existing spaces.<br/>
-          If you need help, <Link to="/contact" className="text-obvian-cyan underline hover:text-white">contact support</Link>.
+          If you need help, <Link to="/contact" className="text-doda-cyan underline hover:text-white">contact support</Link>.
         </motion.p>
         
         <motion.div variants={itemVariants}>
           <Link to="/">
-            <Button className="bg-obvian-cyan text-obvian-black hover:bg-obvian-cyan/80 w-full button-hover">
+            <Button className="bg-doda-cyan text-doda-black hover:bg-doda-cyan/80 w-full button-hover">
               <Home className="mr-2 h-5 w-5" /> Return Home
             </Button>
           </Link>
@@ -135,7 +137,7 @@ const NotFound = () => {
       {Array.from({ length: 20 }).map((_, i) => (
         <div
           key={i}
-          className="absolute rounded-full bg-obvian-cyan/10 pointer-events-none"
+          className="absolute rounded-full bg-doda-cyan/10 pointer-events-none"
           style={{
             width: `${Math.random() * 6 + 2}px`,
             height: `${Math.random() * 6 + 2}px`,

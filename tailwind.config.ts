@@ -63,14 +63,14 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Obvian brand colors
-				obvian: {
-					blue: '#1A2238',
+				// Doda brand colors
+				doda: {
 					black: '#121212',
+					darkblack: '#0A0A0A',
 					gray: '#E6E8EB',
 					cyan: '#21E6C1',
-					darkblack: '#0A0A0A',
-					gold: '#FFD700',
+					blue: '#1A2238',
+					gold: '#FFD700'
 				}
 			},
 			borderRadius: {

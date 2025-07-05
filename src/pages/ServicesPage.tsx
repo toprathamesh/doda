@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { slideUp } from "@/lib/animations";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -67,20 +68,21 @@ const ServicesPage = () => {
   }, []);
 
   return (
-    <motion.div 
-      className={`min-h-screen bg-obvian-black ${mounted ? 'animate-fade-in' : 'opacity-0'}`}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+    <motion.div
+      className={`min-h-screen bg-doda-black text-white ${mounted ? 'animate-fade-in' : 'opacity-0'}`}
+      variants={slideUp}
+      initial="initial"
+      animate="animate"
+      exit="exit"
     >
       <NavBar />
       
       {/* Hero section */}
       <section className="pt-32 pb-16 relative overflow-hidden">
         <BuildingAnimation2 className="absolute inset-0 w-full h-full z-0" />
-        <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
-        <div className="absolute top-20 right-10 w-64 h-64 rounded-full bg-obvian-cyan/10 animate-pulse-soft"></div>
-        <div className="absolute bottom-20 left-10 w-96 h-96 rounded-full bg-obvian-cyan/5 animate-pulse-soft animation-delay-300"></div>
+        <div className="absolute inset-0 bg-grid-doda-cyan/10 [mask-image:linear-gradient(to_bottom,white_5%,transparent_50%)]"></div>
+        <div className="absolute top-20 right-10 w-64 h-64 rounded-full bg-doda-cyan/10 animate-pulse-soft"></div>
+        <div className="absolute bottom-20 left-10 w-96 h-96 rounded-full bg-doda-cyan/5 animate-pulse-soft animation-delay-300"></div>
         
         <div className="container mx-auto px-4 relative z-10">
           <motion.div 
@@ -90,12 +92,12 @@ const ServicesPage = () => {
             transition={{ delay: 0.2 }}
           >
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-obvian-cyan to-white bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-doda-cyan to-white bg-clip-text text-transparent">
                 Our Services
               </span>
             </h1>
-            <p className="text-obvian-gray/90 text-xl max-w-3xl mx-auto mb-8">
-              Discover how Obvian's technology transforms static spaces into dynamic environments that adapt to your needs.
+            <p className="text-doda-gray/90 text-xl max-w-3xl mx-auto mb-8">
+              Discover how Doda's technology transforms static spaces into dynamic environments that adapt to your needs.
             </p>
           </motion.div>
         </div>
@@ -110,8 +112,8 @@ const ServicesPage = () => {
                 key={service.id}
                 className={`px-6 py-3 m-2 rounded-full transition-all ${
                   activeService === index
-                    ? "bg-obvian-cyan text-obvian-black font-medium"
-                    : "bg-obvian-black border border-obvian-cyan/30 text-obvian-cyan hover:bg-obvian-cyan/10"
+                    ? "bg-doda-cyan text-doda-black font-medium"
+                    : "bg-doda-black border border-doda-cyan/30 text-doda-cyan hover:bg-doda-cyan/10"
                 }`}
                 onClick={() => setActiveService(index)}
                 initial={{ opacity: 0, y: 20 }}
@@ -126,7 +128,7 @@ const ServicesPage = () => {
           </div>
           
           <motion.div 
-            className="bg-obvian-black/80 backdrop-blur-sm rounded-2xl border border-obvian-cyan/20 overflow-hidden shadow-[0_0_30px_rgba(33,230,193,0.1)]"
+            className="bg-doda-black/80 backdrop-blur-sm rounded-2xl border border-doda-cyan/20 overflow-hidden shadow-[0_0_30px_rgba(33,230,193,0.1)]"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
@@ -143,12 +145,12 @@ const ServicesPage = () => {
                 <h2 className="text-3xl font-bold mb-4 text-white">
                   {services[activeService].title}
                 </h2>
-                <div className="w-16 h-1 bg-obvian-cyan mb-6"></div>
-                <p className="text-obvian-gray/90 mb-8 text-lg">
+                <div className="w-16 h-1 bg-doda-cyan mb-6"></div>
+                <p className="text-doda-gray/90 mb-8 text-lg">
                   {services[activeService].description}
                 </p>
                 
-                <h3 className="text-xl font-medium mb-4 text-obvian-cyan">Key Features</h3>
+                <h3 className="text-xl font-medium mb-4 text-doda-cyan">Key Features</h3>
                 <div className="grid sm:grid-cols-2 gap-4 mb-8">
                   {services[activeService].features.map((feature, idx) => (
                     <motion.div
@@ -158,7 +160,7 @@ const ServicesPage = () => {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.1 * idx }}
                     >
-                      <div className="w-2 h-8 bg-obvian-cyan rounded-full"></div>
+                      <div className="w-2 h-8 bg-doda-cyan rounded-full"></div>
                       <span className="text-white">{feature}</span>
                     </motion.div>
                   ))}
@@ -166,7 +168,7 @@ const ServicesPage = () => {
                 
                 <div className="flex flex-wrap gap-4">
                   <Button 
-                    className="bg-obvian-cyan text-obvian-black hover:bg-obvian-cyan/80 button-hover"
+                    className="bg-doda-cyan text-doda-black hover:bg-doda-cyan/80 button-hover"
                     asChild
                   >
                     <Link to={`/services/${services[activeService].id}`}>
@@ -175,7 +177,7 @@ const ServicesPage = () => {
                   </Button>
                   <Button 
                     variant="outline" 
-                    className="border-obvian-cyan text-obvian-cyan hover:bg-obvian-cyan/10"
+                    className="border-doda-cyan text-doda-cyan hover:bg-doda-cyan/10"
                     asChild
                   >
                     <Link to="/#contact">
@@ -201,12 +203,12 @@ const ServicesPage = () => {
                     alt={services[activeService].title}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-r from-obvian-black via-transparent to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-doda-black via-transparent to-transparent"></div>
                 </motion.div>
                 
-                <div className="absolute bottom-6 right-6 flex items-center space-x-2 bg-obvian-black/70 backdrop-blur-sm py-2 px-4 rounded-full">
-                  <div className="h-2.5 w-2.5 rounded-full bg-obvian-cyan animate-pulse"></div>
-                  <span className="text-obvian-cyan text-sm font-semibold">Available Now</span>
+                <div className="absolute bottom-6 right-6 flex items-center space-x-2 bg-doda-black/70 backdrop-blur-sm py-2 px-4 rounded-full">
+                  <div className="h-2.5 w-2.5 rounded-full bg-doda-cyan animate-pulse"></div>
+                  <span className="text-doda-cyan text-sm font-semibold">Available Now</span>
                 </div>
               </motion.div>
             </div>
@@ -215,17 +217,17 @@ const ServicesPage = () => {
       </section>
       
       {/* Additional offerings */}
-      <section className="py-16 bg-obvian-black relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-obvian-cyan/30 to-transparent"></div>
+      <section className="py-16 bg-doda-black relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-doda-cyan/30 to-transparent"></div>
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-obvian-cyan to-white bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-doda-cyan to-white bg-clip-text text-transparent">
                 Additional Services
               </span>
             </h2>
-            <p className="text-obvian-gray/80 max-w-3xl mx-auto">
-              Beyond our core offerings, Obvian provides these supplementary services to enhance your experience.
+            <p className="text-doda-gray/80 max-w-3xl mx-auto">
+              Beyond our core offerings, Doda provides these supplementary services to enhance your experience.
             </p>
           </div>
           
@@ -237,7 +239,7 @@ const ServicesPage = () => {
               },
               {
                 title: "Technology Integration",
-                description: "Seamlessly connect your existing smart home devices with Obvian systems."
+                description: "Seamlessly connect your existing smart home devices with Doda systems."
               },
               {
                 title: "Maintenance & Support",
@@ -245,11 +247,11 @@ const ServicesPage = () => {
               },
               {
                 title: "Upgrade Packages",
-                description: "Enhance your Obvian experience with premium feature upgrades."
+                description: "Enhance your Doda experience with premium feature upgrades."
               },
               {
                 title: "Community Events",
-                description: "Join exclusive events for Obvian users to network and share experiences."
+                description: "Join exclusive events for Doda users to network and share experiences."
               },
               {
                 title: "Custom Solutions",
@@ -258,14 +260,14 @@ const ServicesPage = () => {
             ].map((item, index) => (
               <motion.div 
                 key={item.title}
-                className="bg-obvian-black/50 border border-obvian-cyan/20 rounded-xl p-6 backdrop-blur-sm hover:border-obvian-cyan/50 transition-all"
+                className="bg-doda-black/50 border border-doda-cyan/20 rounded-xl p-6 backdrop-blur-sm hover:border-doda-cyan/50 transition-all"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ y: -5, boxShadow: "0 10px 30px -10px rgba(33,230,193,0.3)" }}
               >
                 <h3 className="text-xl font-bold mb-3 text-white">{item.title}</h3>
-                <p className="text-obvian-gray/80">{item.description}</p>
+                <p className="text-doda-gray/80">{item.description}</p>
               </motion.div>
             ))}
           </div>

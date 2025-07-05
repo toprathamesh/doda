@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, Mouse } from "lucide-react";
 import { Link } from "react-router-dom";
 import Animation1 from "./ui/BuildingAnimation1";
 import Animation2 from "./ui/BuildingAnimation2";
@@ -13,6 +13,21 @@ const spaceTypes = [
   { name: "Healthcare", description: "On-demand healthcare facilities" },
   { name: "Dining", description: "Cloud kitchen ready for culinary creativity" }
 ];
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const staggerItem = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7 } },
+};
 
 const Hero = () => {
   const [activeSpace, setActiveSpace] = useState(0);
@@ -30,7 +45,7 @@ const Hero = () => {
 
   return (
     <section 
-      className="pt-32 pb-20 min-h-screen flex flex-col justify-center relative bg-obvian-black overflow-hidden"
+      className="pt-32 pb-20 min-h-screen flex flex-col justify-center relative bg-doda-black overflow-hidden"
     >
       {/* Animated SVG building background */}
       <Animation1 className="absolute inset-0 z-0 pointer-events-none" />
@@ -38,33 +53,28 @@ const Hero = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div
             className="text-center lg:text-left"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
+            variants={staggerContainer}
+            initial="hidden"
+            animate="show"
           >
             <motion.h1 
               className="text-4xl md:text-5xl lg:text-7xl font-bold text-white leading-tight"
-              animate={{ scale: [1, 1.01, 1] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+              variants={staggerItem}
             >
-              Obvian: <span className="animated-gradient-text">The Future of Flexible Urban Living</span>
+              Doda: <span className="animated-gradient-text">The Future of Flexible Urban Living</span>
             </motion.h1>
             <motion.p 
-              className="mt-6 text-xl md:text-2xl text-obvian-gray/90"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
+              className="mt-6 text-xl md:text-2xl text-doda-gray/90"
+              variants={staggerItem}
             >
               Spaces that adapt to your life, work, and needs—in an instant.
             </motion.p>
             <motion.div
               className="mt-10 flex flex-col sm:flex-row justify-center lg:justify-start gap-4"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.4 }}
+              variants={staggerItem}
             >
               <Button 
-                className="bg-obvian-cyan text-obvian-black hover:bg-obvian-cyan/80 px-8 py-6 text-lg button-hover group relative overflow-hidden"
+                className="bg-doda-cyan text-doda-black hover:bg-doda-cyan/80 px-8 py-6 text-lg button-hover group relative overflow-hidden"
                 onClick={scrollToHowItWorks}
               >
                 <span className="relative z-10 flex items-center">
@@ -73,16 +83,16 @@ const Hero = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                   </svg>
                 </span>
-                <span className="absolute inset-0 bg-gradient-to-r from-obvian-cyan via-white/20 to-obvian-cyan opacity-0 group-hover:opacity-30 transition-opacity duration-500"></span>
+                <span className="absolute inset-0 bg-gradient-to-r from-doda-cyan via-white/20 to-doda-cyan opacity-0 group-hover:opacity-30 transition-opacity duration-500"></span>
               </Button>
               <Button 
                 variant="outline" 
-                className="border-obvian-gray text-obvian-gray hover:bg-obvian-gray/10 px-8 py-6 text-lg button-hover relative overflow-hidden group"
+                className="border-doda-gray text-doda-gray hover:bg-doda-gray/10 px-8 py-6 text-lg button-hover relative overflow-hidden group"
                 asChild
               >
                 <Link to="/services">
                   <span className="relative z-10">Explore Services</span>
-                  <span className="absolute inset-0 bg-gradient-to-r from-obvian-gray/10 via-obvian-gray/5 to-obvian-gray/10 opacity-0 group-hover:opacity-30 transition-opacity duration-500"></span>
+                  <span className="absolute inset-0 bg-gradient-to-r from-doda-gray/10 via-doda-gray/5 to-doda-gray/10 opacity-0 group-hover:opacity-30 transition-opacity duration-500"></span>
                 </Link>
               </Button>
             </motion.div>
@@ -150,7 +160,7 @@ const Hero = () => {
           <button 
             onClick={scrollToHowItWorks}
             aria-label="Scroll down"
-            className="text-obvian-cyan hover:text-obvian-cyan/80 transition-colors"
+            className="text-doda-cyan hover:text-doda-cyan/80 transition-colors"
           >
             <ArrowDown className="w-8 h-8" />
           </button>

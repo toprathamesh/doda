@@ -1,7 +1,9 @@
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import { slideUp } from '@/lib/animations';
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
 import { ChevronRight, Star } from "lucide-react";
 import { Link } from "react-router-dom";
 
@@ -38,28 +40,39 @@ const spaceTypes = [
 
 const SpacesPage = () => {
   const [activeSpace, setActiveSpace] = useState(0);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
-    <div className="min-h-screen bg-obvian-black text-white">
+    <motion.div
+      className={`min-h-screen bg-doda-black text-white ${mounted ? 'animate-fade-in' : 'opacity-0'}`}
+      variants={slideUp}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+    >
       <NavBar />
       
       <main className="pt-28 pb-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16 opacity-0 animate-fade-in">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-obvian-cyan to-white bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-doda-cyan to-white bg-clip-text text-transparent">
                 Spaces That Adapt To You
               </span>
             </h1>
-            <p className="text-obvian-gray/80 text-lg md:text-xl max-w-3xl mx-auto">
+            <p className="text-doda-gray/80 text-lg md:text-xl max-w-3xl mx-auto">
               Discover our range of convertible spaces that transform to meet your needs at the touch of a button.
             </p>
           </div>
 
           <div className="grid lg:grid-cols-12 gap-8 mb-16">
             <div className="lg:col-span-4">
-              <div className="bg-obvian-darkblack/60 rounded-xl p-6 backdrop-blur-md border border-obvian-cyan/20 sticky top-24">
-                <h2 className="text-2xl font-bold mb-6 text-obvian-cyan">Space Types</h2>
+              <div className="bg-doda-darkblack/60 rounded-xl p-6 backdrop-blur-md border border-doda-cyan/20 sticky top-24">
+                <h2 className="text-2xl font-bold mb-6 text-doda-cyan">Space Types</h2>
                 
                 <div className="space-y-3">
                   {spaceTypes.map((space, index) => (
@@ -68,8 +81,8 @@ const SpacesPage = () => {
                       onClick={() => setActiveSpace(index)}
                       className={`w-full text-left p-4 rounded-lg transition-all duration-300 flex items-center justify-between ${
                         index === activeSpace 
-                          ? "bg-obvian-cyan/20 text-white border-l-4 border-obvian-cyan" 
-                          : "bg-obvian-darkblack/40 text-obvian-gray/70 hover:bg-obvian-darkblack/80"
+                          ? "bg-doda-cyan/20 text-white border-l-4 border-doda-cyan" 
+                          : "bg-doda-darkblack/40 text-doda-gray/70 hover:bg-doda-darkblack/80"
                       }`}
                     >
                       <span className="font-medium">{space.name}</span>
@@ -100,26 +113,26 @@ const SpacesPage = () => {
                         style={{ zIndex: 0 }}
                         aria-hidden="true"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-obvian-black/70 to-transparent"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-doda-black/70 to-transparent"></div>
                     </div>
                     <div className="p-6 md:p-8">
                       <h2 className="text-3xl font-bold mb-3 text-white">{space.name}</h2>
-                      <p className="text-obvian-gray/80 mb-6 text-base md:text-lg">{space.description}</p>
+                      <p className="text-doda-gray/80 mb-6 text-base md:text-lg">{space.description}</p>
                       <div className="grid md:grid-cols-2 gap-4 mb-8">
                         {space.features.map((feature, fidx) => (
-                          <div key={fidx} className="flex items-center space-x-3 bg-obvian-black/50 p-3 rounded-lg animate-fade-in-up" style={{animationDelay: `${fidx * 80}ms`, animationFillMode: 'forwards'}}>
-                            <div className="bg-obvian-cyan/20 p-1.5 rounded-full">
-                              <Star className="h-4 w-4 text-obvian-cyan" />
+                          <div key={fidx} className="flex items-center space-x-3 bg-doda-black/50 p-3 rounded-lg animate-fade-in-up" style={{animationDelay: `${fidx * 80}ms`, animationFillMode: 'forwards'}}>
+                            <div className="bg-doda-cyan/20 p-1.5 rounded-full">
+                              <Star className="h-4 w-4 text-doda-cyan" />
                             </div>
                             <span className="text-white text-sm md:text-base">{feature}</span>
                           </div>
                         ))}
                       </div>
                       <div className="flex flex-col sm:flex-row gap-4">
-                        <Button asChild className="bg-obvian-cyan text-obvian-black hover:bg-obvian-cyan/80 button-hover font-semibold shadow-cyan-glow">
+                        <Button asChild className="bg-doda-cyan text-doda-black hover:bg-doda-cyan/80 button-hover font-semibold shadow-cyan-glow">
                           <Link to="/book-tour">Book a Tour</Link>
                         </Button>
-                        <Button variant="outline" className="border-obvian-cyan/50 text-obvian-cyan hover:bg-obvian-cyan/10 button-hover font-semibold">
+                        <Button variant="outline" className="border-doda-cyan/50 text-doda-cyan hover:bg-doda-cyan/10 button-hover font-semibold">
                           Learn More
                         </Button>
                       </div>
@@ -131,11 +144,11 @@ const SpacesPage = () => {
           </div>
           
           <div className="text-center">
-            <h2 className="text-2xl md:text-3xl font-bold mb-6 text-obvian-cyan">Ready to Experience Obvian?</h2>
-            <p className="text-obvian-gray/80 mb-8 max-w-2xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-bold mb-6 text-doda-cyan">Ready to Experience Doda?</h2>
+            <p className="text-doda-gray/80 mb-8 max-w-2xl mx-auto">
               Join our waitlist to be among the first to experience the future of flexible urban living.
             </p>
-            <Button asChild className="bg-obvian-cyan text-obvian-black hover:bg-obvian-cyan/80 button-hover px-8 py-6 text-lg">
+            <Button asChild className="bg-doda-cyan text-doda-black hover:bg-doda-cyan/80 button-hover px-8 py-6 text-lg">
               <Link to="/join-waitlist">Join Waitlist</Link>
             </Button>
           </div>
@@ -143,7 +156,7 @@ const SpacesPage = () => {
       </main>
       
       <Footer />
-    </div>
+    </motion.div>
   );
 };
 

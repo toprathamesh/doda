@@ -6,6 +6,7 @@ import { ChevronLeft, MapPin, Calendar, Users, ArrowRight } from "lucide-react";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import { useToast } from "@/components/ui/use-toast";
+import { slideUp } from "@/lib/animations";
 
 // Add this type above the projects array:
 type Project = {
@@ -30,40 +31,29 @@ const projects = [
     title: "Neo Living NYC",
     location: "New York City, NY",
     date: "2024",
-    description: "A flagship residential building featuring 200 Obvian-enabled apartments in the heart of Manhattan. Each unit showcases our latest adaptive living technology, allowing residents to transform their spaces from bedroom to office to entertainment area with a simple voice command or app control.",
-    longDescription: "Neo Living represents the pinnacle of Obvian's residential implementation, with each apartment serving as a showcase for our transformative technology. Located in Manhattan's vibrant Chelsea district, this 25-story tower features 200 units ranging from studios to three-bedroom apartments, all equipped with our core adaptive systems.\n\nResidents enjoy spaces that evolve throughout their day - waking up to a bedroom that transforms into a home office, then converts to an entertainment space in the evening, and back to a bedroom at night. All transformations occur within seconds, with furniture and fixtures automatically repositioning themselves.\n\nThe building also features common areas with Obvian technology, including flex spaces that serve as co-working environments during weekdays and transform into community gathering spaces during evenings and weekends.",
+    description: "A flagship residential building featuring 200 Doda-enabled apartments in the heart of Manhattan. Each unit showcases our latest adaptive living technology, allowing residents to transform their spaces from bedroom to office to entertainment area at the touch of a button.",
+    longDescription: "Neo Living represents the pinnacle of Doda's residential implementation, with each apartment serving as a showcase for our transformative technology. Located in Manhattan's vibrant Chelsea district, this 25-story tower features 200 units ranging from studios to two-bedrooms. The building also features common areas with Doda technology, including flex spaces that serve as co-working environments during weekdays and transform into community gathering spaces during evenings and weekends.",
     gallery: [
       "https://images.unsplash.com/photo-1577495508326-19a1b3cf65b7",
-      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267",
-      "https://images.unsplash.com/photo-1460317442991-0ec209397118",
-      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688",
+      "https://images.unsplash.com/photo-1556702585-52825a741353",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2"
     ],
     stats: [
       { label: "Units", value: "200" },
-      { label: "Floor area", value: "180,000 sq ft" },
-      { label: "Completion", value: "2024" },
-      { label: "Architecture", value: "Foster + Partners" },
-      { label: "Developer", value: "Urban Visions" },
-      { label: "Technology", value: "Obvian Core 2.0" }
+      { label: "Stories", value: "25" },
+      { label: "Technology", value: "Doda Core 2.0" }
     ],
     features: [
-      "Full apartment automation with voice and app control",
-      "Transforming furniture systems with memory positioning",
-      "Smart walls that shift to create different room configurations",
-      "Integrated technology hubs in each unit",
-      "Community spaces that adapt to different uses throughout the day",
-      "Building-wide resource optimization systems"
+      "Robotic furniture systems",
+      "AI-powered environmental controls",
+      "Automated moving walls and partitions",
+      "Smart home integration"
     ],
     testimonials: [
       {
-        text: "My Neo Living apartment has transformed how I live. I no longer feel limited by my square footage - it's like having three different apartments in one.",
-        author: "Sarah L., Resident",
-        role: "Tech Executive"
-      },
-      {
-        text: "As a developer, incorporating Obvian's systems has allowed us to offer unprecedented functionality in smaller units, making urban living more accessible and practical.",
-        author: "Michael T.",
-        role: "Urban Visions Development"
+        text: "As a developer, incorporating Doda's systems has allowed us to offer unprecedented functionality in smaller units, making urban living more accessible and practical.",
+        author: "Jane Doe",
+        role: "CEO, UrbanScape Developments"
       }
     ],
     tags: ["Residential", "Urban", "Flagship"]
@@ -73,29 +63,23 @@ const projects = [
     title: "Tech Hub SF",
     location: "San Francisco, CA",
     date: "2023",
-    description: "A revolutionary co-working space with Obvian's flexible workstations that transform based on daily needs.",
-    longDescription: "Tech Hub SF reimagines the co-working space for the post-pandemic world. Located in San Francisco's SoMa district, this 45,000 sq ft facility features Obvian's commercial workspace systems throughout.\n\nThe space includes 150 adaptive workstations that can transform from individual focus spaces to collaborative team environments in seconds. Conference rooms can expand or contract based on meeting size, and social areas can transform for different events or functions.\n\nTech Hub SF serves as Obvian's West Coast showcase for our commercial applications, demonstrating how adaptive spaces can maximize real estate efficiency while providing optimal working environments for different activities.",
+    description: "A revolutionary co-working space with Doda's flexible workstations that transform based on daily needs.",
+    longDescription: "Located in the heart of Silicon Valley, Tech Hub SF sets a new standard for flexible workspace. Developed in partnership with a leading tech real estate firm, this 45,000 sq ft facility features Doda's commercial workspace systems throughout.\n\nThe space includes 150 adaptive workstations that can transform from individual focus spaces to collaborative team environments in seconds. Conference rooms reconfigure automatically based on meeting size and purpose, and even common areas can adapt for presentations or functions.\n\nTech Hub SF serves as Doda's West Coast showcase for our commercial applications, demonstrating how adaptive spaces can maximize real estate efficiency while providing optimal working environments for different activities.",
     gallery: [
       "https://images.unsplash.com/photo-1497366754035-f200968a6e72",
-      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d",
-      "https://images.unsplash.com/photo-1517502884422-41eaead166d4",
-      "https://images.unsplash.com/photo-1462826303086-329426d1aef5"
+      "https://images.unsplash.com/photo-1552664730-d307ca884978",
+      "https://images.unsplash.com/photo-1556761175-5973dc0f32e7"
     ],
     stats: [
-      { label: "Workspaces", value: "150" },
-      { label: "Floor area", value: "45,000 sq ft" },
-      { label: "Completion", value: "2023" },
-      { label: "Architecture", value: "Studio Gang" },
-      { label: "Operator", value: "FlexWork Inc" },
-      { label: "Technology", value: "Obvian Business Suite" }
+      { label: "Workstations", value: "150" },
+      { label: "SQFT", value: "45,000" },
+      { label: "Technology", value: "Doda Business Suite" }
     ],
     features: [
-      "Adaptive workstations that transform between different configurations",
-      "Conference rooms that expand or contract based on meeting size",
-      "Sound-masking technology for privacy in open environments",
-      "Integrated booking system with automatic space preparation",
-      "Personalized environment settings that follow users throughout the facility",
-      "Advanced air purification and environmental control systems"
+      "Transforming desks and partitions",
+      "Automated meeting room layouts",
+      "Acoustic privacy on demand",
+      "Integrated booking and management system"
     ],
     testimonials: [
       {
@@ -178,14 +162,17 @@ const ProjectDetail = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-obvian-black text-white">
+      <div className="min-h-screen bg-doda-black text-white">
         <NavBar />
-        <div className="container mx-auto px-4 pt-32 pb-20">
-          <div className="flex items-center justify-center h-[60vh]">
-            <div className="relative w-12 h-12">
-              <div className="absolute inset-0 rounded-full border-2 border-obvian-cyan/30 border-t-obvian-cyan animate-spin"></div>
-            </div>
-          </div>
+        <div className="flex flex-col items-center justify-center h-screen">
+          <motion.div
+            className="absolute inset-0 rounded-full border-2 border-doda-cyan/30 border-t-doda-cyan animate-spin"
+            style={{ width: 100, height: 100 }}
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+          ></motion.div>
+          <p className="mt-32 text-xl">Loading Project...</p>
         </div>
       </div>
     );
@@ -194,18 +181,19 @@ const ProjectDetail = () => {
   if (!project) return null;
 
   return (
-    <motion.div 
-      className="min-h-screen bg-obvian-black text-white"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+    <motion.div
+      className="min-h-screen bg-doda-black text-white"
+      variants={slideUp}
+      initial="initial"
+      animate="animate"
+      exit="exit"
     >
       <NavBar />
       
       {/* Hero section */}
       <section className="pt-32 pb-12 relative overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-obvian-black/70 z-10"></div>
+          <div className="absolute inset-0 bg-doda-black/70 z-10"></div>
           <video
             src="https://static.vecteezy.com/system/resources/previews/033/658/784/mp4/modern-office-building-with-silhouettes-of-businessmen-walking-on-sidewalk-video.mp4"
             autoPlay
@@ -223,7 +211,7 @@ const ProjectDetail = () => {
           <div className="mb-8">
             <Button 
               variant="ghost" 
-              className="text-white hover:bg-obvian-black/20 group"
+              className="text-white hover:bg-doda-black/20 group"
               onClick={() => navigate("/projects")}
             >
               <ChevronLeft className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1" />
@@ -233,7 +221,7 @@ const ProjectDetail = () => {
           
           <div className="flex flex-col md:flex-row md:items-end gap-6 max-w-4xl">
             <div>
-              <div className="flex items-center gap-2 text-obvian-cyan mb-2">
+              <div className="flex items-center gap-2 text-doda-cyan mb-2">
                 <MapPin className="w-4 h-4" />
                 <span>{project.location}</span>
                 <span className="mx-1">•</span>
@@ -245,7 +233,7 @@ const ProjectDetail = () => {
                 {project.title}
               </h1>
               
-              <p className="text-lg text-obvian-gray/90 max-w-2xl">
+              <p className="text-lg text-doda-gray/90 max-w-2xl">
                 {project.description}
               </p>
             </div>
@@ -281,7 +269,7 @@ const ProjectDetail = () => {
             <div className="md:col-span-2">
               <h2 className="text-2xl font-bold mb-6 text-white animate-fade-in-up delay-100">About this Project</h2>
               {project.longDescription.split('\n\n').map((paragraph: string, index: number) => (
-                <p key={index} className="text-obvian-gray/90 mb-4 animate-fade-in-up" style={{animationDelay: `${100 + index * 60}ms`, animationFillMode: 'forwards'}}>
+                <p key={index} className="text-doda-gray/90 mb-4 animate-fade-in-up" style={{animationDelay: `${100 + index * 60}ms`, animationFillMode: 'forwards'}}>
                   {paragraph}
                 </p>
               ))}
@@ -289,12 +277,12 @@ const ProjectDetail = () => {
               <ul className="space-y-3">
                 {project.features?.map((feature: string, index: number) => (
                   <li key={index} className="flex items-start animate-fade-in-up" style={{animationDelay: `${200 + index * 60}ms`, animationFillMode: 'forwards'}}>
-                    <div className="bg-obvian-cyan/20 p-1 rounded-full mt-1">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" className="w-4 h-4 text-obvian-cyan">
+                    <div className="bg-doda-cyan/20 p-1 rounded-full mt-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" className="w-4 h-4 text-doda-cyan">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                       </svg>
                     </div>
-                    <span className="ml-3 text-obvian-gray/90">{feature}</span>
+                    <span className="ml-3 text-doda-gray/90">{feature}</span>
                   </li>
                 ))}
               </ul>
@@ -304,9 +292,9 @@ const ProjectDetail = () => {
               <ul className="space-y-4">
                 {project.testimonials?.map((testimonial, idx) => (
                   <li key={idx} className="animate-fade-in-up" style={{animationDelay: `${300 + idx * 80}ms`, animationFillMode: 'forwards'}}>
-                    <blockquote className="text-obvian-gray/90 italic mb-2">“{testimonial.text}”</blockquote>
-                    <div className="text-obvian-cyan font-semibold">{testimonial.author}</div>
-                    <div className="text-obvian-gray/70 text-sm">{testimonial.role}</div>
+                    <blockquote className="text-doda-gray/90 italic mb-2">“{testimonial.text}”</blockquote>
+                    <div className="text-doda-cyan font-semibold">{testimonial.author}</div>
+                    <div className="text-doda-gray/70 text-sm">{testimonial.role}</div>
                   </li>
                 ))}
               </ul>
@@ -327,7 +315,7 @@ const ProjectDetail = () => {
               .map((relatedProject, idx) => (
                 <div
                   key={relatedProject.id}
-                  className="glass-card border border-cyan-400/10 bg-obvian-black/60 rounded-xl overflow-hidden group hover:border-obvian-cyan/50 transition-all animate-fade-in-up"
+                  className="glass-card border border-cyan-400/10 bg-doda-black/60 rounded-xl overflow-hidden group hover:border-doda-cyan/50 transition-all animate-fade-in-up"
                   style={{animationDelay: `${100 + idx * 100}ms`, animationFillMode: 'forwards'}}
                 >
                   <div className="relative h-48 overflow-hidden">
@@ -337,14 +325,14 @@ const ProjectDetail = () => {
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-obvian-black to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-doda-black to-transparent"></div>
                   </div>
                   <div className="p-5">
                     <h3 className="text-lg font-bold mb-2 text-white">{relatedProject.title}</h3>
-                    <p className="text-obvian-gray/80 text-sm mb-4 line-clamp-2">{relatedProject.description}</p>
+                    <p className="text-doda-gray/80 text-sm mb-4 line-clamp-2">{relatedProject.description}</p>
                     <Link
                       to={`/projects/${relatedProject.id}`}
-                      className="text-obvian-cyan flex items-center hover:underline"
+                      className="text-doda-cyan flex items-center hover:underline"
                     >
                       View Project
                       <ArrowRight className="ml-1 h-4 w-4" />

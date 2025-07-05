@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
 import BuildingAnimation2 from "./ui/BuildingAnimation2";
+import { Check } from "lucide-react";
 
 const spaceTransformations = [
   {
@@ -39,23 +40,23 @@ const HowItWorks = () => {
   return (
     <section 
       id="how-it-works" 
-      className="py-24 bg-obvian-black relative overflow-hidden"
+      className="py-24 bg-doda-black relative overflow-hidden"
       ref={ref}
     >
       {/* Background elements */}
       <div className="absolute inset-0 bg-grid-pattern opacity-5 z-0"></div>
       <motion.div 
-        className="absolute -bottom-16 -left-16 w-64 h-64 bg-obvian-cyan/5 rounded-full" 
+        className="absolute -bottom-16 -left-16 w-64 h-64 bg-doda-cyan/5 rounded-full" 
         animate={{ scale: [1, 1.1, 1], opacity: [0.05, 0.1, 0.05] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div 
-        className="absolute top-32 -right-24 w-96 h-96 bg-obvian-cyan/5 rounded-full"
+        className="absolute top-32 -right-24 w-96 h-96 bg-doda-cyan/5 rounded-full"
         animate={{ scale: [1, 1.15, 1], opacity: [0.05, 0.1, 0.05] }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
       />
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-obvian-cyan/30 to-transparent"></div>
-      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-obvian-cyan/30 to-transparent"></div>
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-doda-cyan/30 to-transparent"></div>
+      <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-doda-cyan/30 to-transparent"></div>
       
       <div className="container mx-auto px-4 relative z-10">
         <motion.div 
@@ -65,10 +66,10 @@ const HowItWorks = () => {
           transition={{ duration: 0.7 }}
         >
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-            How <span className="text-obvian-cyan">Obvian</span> Works
+            How <span className="text-doda-cyan">Doda</span> Works
           </h2>
-          <p className="text-lg md:text-xl text-obvian-gray/90 max-w-3xl mx-auto">
-            Our spaces transform to meet your needs at the touch of a button. See how Obvian adapts to your life, work, and everything in between.
+          <p className="text-lg md:text-xl text-doda-gray/90 max-w-3xl mx-auto">
+            Our spaces transform to meet your needs at the touch of a button. See how Doda adapts to your life, work, and everything in between.
           </p>
         </motion.div>
         
@@ -86,8 +87,8 @@ const HowItWorks = () => {
                   onClick={() => setActiveTab(index)}
                   className={`px-6 py-3 rounded-full whitespace-nowrap transition-all font-semibold shadow-cyan-glow ${
                     activeTab === index
-                      ? "bg-obvian-cyan text-obvian-black font-medium"
-                      : "bg-obvian-black border border-obvian-cyan/30 text-obvian-cyan hover:bg-obvian-cyan/10"
+                      ? "bg-doda-cyan text-doda-black font-medium"
+                      : "bg-doda-black border border-doda-cyan/30 text-doda-cyan hover:bg-doda-cyan/10"
                   }`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -99,7 +100,7 @@ const HowItWorks = () => {
           </motion.div>
           
           <motion.div
-            className="bg-obvian-black border border-obvian-cyan/20 rounded-2xl shadow-[0_0_30px_rgba(33,230,193,0.1)] overflow-hidden animate-fade-in-up delay-300"
+            className="bg-doda-black border border-doda-cyan/20 rounded-2xl shadow-[0_0_30px_rgba(33,230,193,0.1)] overflow-hidden animate-fade-in-up delay-300"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.7, delay: 0.4 }}
@@ -117,31 +118,36 @@ const HowItWorks = () => {
                   <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 animate-fade-in-up delay-100">
                     {spaceTransformations[activeTab].title}
                   </h3>
-                  <p className="text-obvian-gray/90 mb-8 animate-fade-in-up delay-200">
+                  <p className="text-doda-gray/90 mb-8 animate-fade-in-up delay-200">
                     {spaceTransformations[activeTab].description}
                   </p>
-                  <div className="space-y-4 mb-8">
-                    {spaceTransformations[activeTab].features.map((feature, idx) => (
+                  <motion.div
+                    className="space-y-4 mb-8"
+                    variants={{
+                      show: { transition: { staggerChildren: 0.1 } }
+                    }}
+                    initial="hidden"
+                    animate="show"
+                  >
+                    {spaceTransformations[activeTab].features.map((feature) => (
                       <motion.div
                         key={feature}
-                        className="flex items-start animate-fade-in-up"
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: idx * 0.1 }}
-                        style={{ animationDelay: `${200 + idx * 80}ms`, animationFillMode: 'forwards' }}
+                        className="flex items-start"
+                        variants={{
+                          hidden: { opacity: 0, x: -20 },
+                          show: { opacity: 1, x: 0 }
+                        }}
                       >
-                        <div className="bg-obvian-cyan/20 p-1 rounded-full mt-1">
-                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" className="w-4 h-4 text-obvian-cyan">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                          </svg>
+                        <div className="bg-doda-cyan/20 p-1 rounded-full mt-1">
+                          <Check className="w-4 h-4 text-doda-cyan" />
                         </div>
-                        <span className="ml-3 text-obvian-gray/90">{feature}</span>
+                        <span className="ml-3 text-doda-gray/90">{feature}</span>
                       </motion.div>
                     ))}
-                  </div>
+                  </motion.div>
                 </div>
                 <Button
-                  className="bg-obvian-cyan text-obvian-black hover:bg-obvian-cyan/80 mt-4 button-hover font-semibold shadow-cyan-glow self-start"
+                  className="bg-doda-cyan text-doda-black hover:bg-doda-cyan/80 mt-4 button-hover font-semibold shadow-cyan-glow self-start"
                   asChild
                 >
                   <Link to="/services">Explore Services</Link>
@@ -160,9 +166,9 @@ const HowItWorks = () => {
                 {/* Animated SVG building background */}
                 <BuildingAnimation2 className="absolute inset-0 w-full h-full" />
                 <div className="absolute top-4 left-4">
-                  <div className="bg-obvian-black/30 backdrop-blur-sm px-3 py-1 rounded-full">
+                  <div className="bg-doda-black/30 backdrop-blur-sm px-3 py-1 rounded-full">
                     <div className="flex items-center space-x-2">
-                      <div className="h-2 w-2 rounded-full bg-obvian-cyan animate-pulse"></div>
+                      <div className="h-2 w-2 rounded-full bg-doda-cyan animate-pulse"></div>
                       <span className="text-white text-sm">Transformation {activeTab + 1}/4</span>
                     </div>
                   </div>
@@ -198,7 +204,7 @@ const HowItWorks = () => {
           >
             <Button 
               variant="outline" 
-              className="border-obvian-cyan text-obvian-cyan hover:bg-obvian-cyan hover:text-obvian-black"
+              className="border-doda-cyan text-doda-cyan hover:bg-doda-cyan hover:text-doda-black"
               asChild
             >
               <Link to="/projects">View Our Projects</Link>

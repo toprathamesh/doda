@@ -1,21 +1,16 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/hooks/use-toast";
+import { motion, useInView } from "framer-motion";
+import { Phone, Mail, MapPin } from "lucide-react";
 
-const BuildingAccent = () => (
-  <svg className="absolute -top-16 right-0 w-64 h-64 opacity-10 z-0 animate-float" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="12" y="20" width="40" height="36" rx="4" fill="#21E6C1" stroke="#1A2238" strokeWidth="3"/>
-    <rect x="24" y="36" width="8" height="12" fill="#1A2238"/>
-    <rect x="36" y="36" width="8" height="12" fill="#1A2238"/>
-    <rect x="28" y="28" width="8" height="6" fill="#1A2238"/>
-    <rect x="20" y="28" width="4" height="6" fill="#1A2238"/>
-    <rect x="40" y="28" width="4" height="6" fill="#1A2238"/>
-    <rect x="30" y="48" width="4" height="8" fill="#FFD700"/>
-    <rect x="18" y="56" width="28" height="4" fill="#1A2238"/>
-  </svg>
-);
+const contactInfo = [
+  { icon: Phone, title: "Call Us", details: ["(555) 123-4567"] },
+  { icon: Mail, title: "Email Us", details: ["hello@doda.com"] },
+  { icon: MapPin, title: "Visit Us", details: ["123 Innovation Ave", "San Francisco, CA 94105"] }
+];
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -54,151 +49,96 @@ const Contact = () => {
     }, 1500);
   };
 
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+
+  const containerVariants = {
+    hidden: { opacity: 0, y: 50 },
+    show: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { 
+        duration: 0.8,
+        staggerChildren: 0.2 
+      } 
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  };
+
   return (
-    <section id="contact" className="py-24 bg-obvian-gray/10 relative overflow-hidden">
-      <BuildingAccent />
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div className="animate-fade-in-up delay-100">
-            <div className="mb-6">
-              <div className="inline-block px-6 py-4 rounded-2xl glass-card shadow-xl border border-cyan-400/20 bg-gradient-to-br from-obvian-cyan/10 to-white/5 backdrop-blur-md">
-                <h2 className="text-3xl md:text-4xl font-bold text-white drop-shadow-lg">
-                  Join the <span className="text-obvian-cyan glow-text">Obvian</span> Community
-                </h2>
-                <p className="text-lg text-white/90 mt-2 drop-shadow-md">
-                  Ready to experience the future of flexible urban living? Join our waitlist or schedule a virtual tour today to see how Obvian can transform your lifestyle.
-                </p>
+    <section id="contact" className="py-24 bg-doda-black relative overflow-hidden" ref={ref}>
+      <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
+      <div className="container mx-auto px-4 z-10 relative">
+        <motion.div 
+          className="text-center mb-16"
+          variants={itemVariants}
+          initial="hidden"
+          animate={isInView ? "show" : "hidden"}
+        >
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
+            Get in <span className="text-doda-cyan">Touch</span>
+          </h2>
+          <p className="text-lg md:text-xl text-doda-gray/90 max-w-3xl mx-auto">
+            Have questions or want to learn more? Reach out to us or schedule a virtual tour to see how Doda can transform your lifestyle.
+          </p>
+        </motion.div>
+
+        <div className="grid lg:grid-cols-2 gap-16 items-start">
+          <motion.div 
+            className="space-y-8"
+            variants={containerVariants}
+            initial="hidden"
+            animate={isInView ? "show" : "hidden"}
+          >
+            {contactInfo.map((info, index) => (
+              <motion.div key={index} className="flex items-start space-x-6" variants={itemVariants}>
+                <div className="bg-doda-cyan/20 p-4 rounded-xl inline-flex text-doda-cyan">
+                  <info.icon size={28} />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-white mb-2">{info.title}</h3>
+                  {info.details.map((detail, i) => (
+                    <p key={i} className="text-doda-gray/80 text-lg">{detail}</p>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <motion.div
+            className="p-8 rounded-2xl bg-doda-gray/5 border border-doda-gray/20 shadow-2xl"
+            variants={itemVariants}
+            initial="hidden"
+            animate={isInView ? "show" : "hidden"}
+            transition={{ delay: 0.4 }}
+          >
+            <h3 className="text-2xl font-bold text-white mb-6">Send us a message</h3>
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div>
+                <label htmlFor="name" className="sr-only">Full Name</label>
+                <Input id="name" name="name" value={formData.name} onChange={handleChange} placeholder="Full Name" required />
               </div>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
-              <div className="bg-white/80 glass-card p-6 rounded-xl shadow-lg animate-fade-in-up delay-200">
-                <div className="text-obvian-cyan mb-3">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
-                  </svg>
-                </div>
-                <h3 className="text-lg font-semibold mb-1">Contact Us</h3>
-                <p className="text-obvian-blue/70">(555) 123-4567</p>
-                <p className="text-obvian-blue/70">hello@obvian.com</p>
+              <div>
+                <label htmlFor="email" className="sr-only">Email Address</label>
+                <Input id="email" name="email" type="email" value={formData.email} onChange={handleChange} placeholder="Email Address" required />
               </div>
-              <div className="bg-white/80 glass-card p-6 rounded-xl shadow-lg animate-fade-in-up delay-300">
-                <div className="text-obvian-cyan mb-3">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-lg font-semibold mb-1">Visit Us</h3>
-                <p className="text-obvian-blue/70">123 Innovation Ave</p>
-                <p className="text-obvian-blue/70">San Francisco, CA 94105</p>
+              <div>
+                <label htmlFor="message" className="sr-only">Your Message</label>
+                <Textarea id="message" name="message" value={formData.message} onChange={handleChange} placeholder="Your Message..." rows={4} />
               </div>
-            </div>
-            <div className="flex space-x-4 animate-fade-in-up delay-400">
-              {["facebook", "twitter", "instagram", "linkedin"].map((social) => (
-                <a
-                  key={social}
-                  href={`#${social}`}
-                  className="bg-white/80 border border-obvian-cyan/30 rounded-full flex items-center justify-center w-10 h-10 text-obvian-cyan hover:bg-obvian-cyan hover:text-white shadow-cyan-glow transition-all"
-                >
-                  <span className="sr-only">{social}</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
-                  </svg>
-                </a>
-              ))}
-            </div>
-          </div>
-          <div className="bg-white/80 glass-card rounded-2xl shadow-2xl p-8 md:p-10 animate-fade-in-up delay-200">
-            <h3 className="text-2xl font-bold text-obvian-blue mb-6">
-              Get on the Waitlist
-            </h3>
-            <form onSubmit={handleSubmit}>
-              <div className="space-y-5">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-obvian-blue/70 mb-1">
-                    Full Name
-                  </label>
-                  <Input
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    placeholder="John Doe"
-                    required
-                    className="border-obvian-gray/30 focus-visible:ring-obvian-cyan"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-obvian-blue/70 mb-1">
-                    Email
-                  </label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="you@example.com"
-                    required
-                    className="border-obvian-gray/30 focus-visible:ring-obvian-cyan"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-obvian-blue/70 mb-1">
-                    Phone Number
-                  </label>
-                  <Input
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    placeholder="(555) 123-4567"
-                    className="border-obvian-gray/30 focus-visible:ring-obvian-cyan"
-                  />
-                </div>
-                <div>
-                  <label htmlFor="interest" className="block text-sm font-medium text-obvian-blue/70 mb-1">
-                    I'm interested in
-                  </label>
-                  <select
-                    id="interest"
-                    name="interest"
-                    value={formData.interest}
-                    onChange={handleChange}
-                    className="w-full rounded-md border border-obvian-gray/30 py-2 px-3 text-obvian-blue shadow-sm focus:border-obvian-cyan focus:outline-none focus:ring-1 focus:ring-obvian-cyan"
-                  >
-                    <option value="living">Living Space</option>
-                    <option value="working">Working Space</option>
-                    <option value="healthcare">Healthcare Space</option>
-                    <option value="kitchen">Kitchen Space</option>
-                    <option value="amenities">Amenities Only</option>
-                  </select>
-                </div>
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-obvian-blue/70 mb-1">
-                    Message (Optional)
-                  </label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder="Tell us about your needs..."
-                    className="border-obvian-gray/30 focus-visible:ring-obvian-cyan"
-                    rows={4}
-                  />
-                </div>
-                <Button 
-                  type="submit" 
-                  disabled={isSubmitting}
-                  className="w-full bg-gradient-to-r from-obvian-blue to-obvian-cyan hover:bg-obvian-cyan/90 text-white py-6 font-bold shadow-cyan-glow button-hover"
-                >
-                  {isSubmitting ? "Submitting..." : "Join the Waitlist"}
-                </Button>
-              </div>
+              <Button 
+                type="submit" 
+                disabled={isSubmitting}
+                className="w-full bg-doda-cyan text-doda-black hover:bg-doda-cyan/80 py-4 font-bold text-lg"
+              >
+                {isSubmitting ? "Sending..." : "Send Message"}
+              </Button>
             </form>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
